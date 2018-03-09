@@ -2,8 +2,10 @@
 
 $cmsMode = "DEV";
 
+// MODIFIER LE FICHIER .htaccess
+// A MODIFIER AUSSI
 // configuration pour le site
-$rootDir = "/archives/310/public";
+$rootDir = "/archives/320/public";
 $dbSQL   = "cmsFun";
 
 // code commun du CMS
