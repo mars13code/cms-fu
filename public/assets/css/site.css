@@ -1,0 +1,111 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+.page {
+    width: 100%;
+}
+
+header,
+footer {
+    width: 100%;
+}
+
+header,
+footer {
+    display: flex;
+    justify-content: center;
+    align-items:stretch;
+}
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding-left: 0;
+}
+
+nav li {
+    padding: 1rem;
+}
+a {
+    text-decoration: none;
+    display:inline-block;
+    padding:0.5rem;
+}
+table {
+    width: 100%;
+}
+
+td {
+    border: 1px solid #123456;
+    padding: 0.5rem;
+}
+
+.ligne {
+    display: flex;
+    width: 100%;
+}
+
+.ligne.col3>* {
+    width: calc(100% / 3);
+    padding: 1rem;
+}
+
+/*
+
+FLEXBOX:
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+
+*/
+
+form.vertical {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+}
+
+form>* {
+    padding: 0.2rem;
+    margin: 0.25rem;
+}
+
+
+.description {
+    padding:1rem;
+}
+
+/*
+COLORS
+*/
+
+:root {
+    --color1: #aaaaaa;
+    --color2: #cccccc;
+    --color3: #eeeeee;
+}
+
+header {
+    background-color: var(--color1);
+}
+
+footer {
+    background-color: var(--color1);
+}
+
+article {
+    background-color: var(--color3);
+}
