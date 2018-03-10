@@ -3,6 +3,18 @@ DEFAULT CHARACTER SET utf8mb4
 COLLATE utf8mb4_general_ci;
 USE `cmsFun`;
 
+CREATE TABLE IF NOT EXISTS `Framework` (
+  `id`                int(11)         NOT NULL AUTO_INCREMENT,
+  `step`              int(11)         NOT NULL,
+  `sequence`          varchar(190)    NOT NULL,
+  `pool`              varchar(190)    NOT NULL,
+  `method`            varchar(190)    NOT NULL,
+  `param`             varchar(190)    NOT NULL,
+  `code`              text            NOT NULL,
+  `level`             int(11)         NOT NULL,
+  `cle`               varchar(190)    NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
 
 
 
@@ -33,6 +45,18 @@ CREATE TABLE IF NOT EXISTS `Page` (
   `ip`          varchar(200)    NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE `urlPage` (urlPage(190))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
+
+
+CREATE TABLE IF NOT EXISTS `Jointure` (
+  `id`                int(11)         NOT NULL AUTO_INCREMENT,
+  `nomTable1`         varchar(190)    NOT NULL,
+  `nomTable2`         varchar(190)    NOT NULL,
+  `idTable1`          int(11)         NOT NULL,
+  `idTable2`          int(11)         NOT NULL,
+  `level`             int(11)         NOT NULL,
+  `cle`               varchar(190)    NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
 
 /*

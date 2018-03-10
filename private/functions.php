@@ -1,4 +1,43 @@
 <?php
+function afficher($varGlobale, $defaut = "")
+{
+    if (isset($GLOBALS[$varGlobale])) {
+        echo $GLOBALS[$varGlobale];
+    } elseif ($defaut != "") {
+        echo $defaut;
+    }
+
+}
+
+function startCMS()
+{
+    $codeSQL =
+        <<<CODESQL
+SELECT * FROM Framework
+ORDER BY step ASC
+
+CODESQL;
+    $tabResult = envoyerRequeteSQL($codeSQL);
+    foreach ($tabResult as $tabLigne) {
+        extract($tabLigne);
+        $sequence ?? $sequence = "";
+        $pool ?? $pool         = "";
+        $method ?? $method     = "";
+        if (($pool != "") && ($method != "")) {
+            $dossierRacine = __DIR__;
+            if ($sequence == "plugin") {
+                $dossierRacine = __DIR__ . "/../projet/plugin";
+            }
+
+            $cheminFichier = "$dossierRacine/$pool/$method.php";
+            //echo "$cheminFichier";
+            if (is_file($cheminFichier)) {
+                require_once $cheminFichier;
+            }
+        }
+    }
+}
+
 function extraireUri($rootDir)
 {
     $uri = $_SERVER["REQUEST_URI"];
@@ -18,8 +57,10 @@ function extraireUri($rootDir)
     return $result;
 }
 
-function afficherPage ($rootDir)
+function afficherPage ()
 {
+    global $rootDir;
+    
     $uriPage   = extraireUri($rootDir);
     $tabResult = trouverLigne("Page", "urlPage", $uriPage);
     if(is_object($tabResult))

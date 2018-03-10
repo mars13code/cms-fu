@@ -26,8 +26,4 @@ $passSQL    ?? $passSQL = "";
 // charger les déclarations de mes fonctions
 require_once(__DIR__ . "/functions.php");
 
-// controller
-traiterForm();
-
-// view
-afficherPage($rootDir);
+startCMS();
