@@ -1,34 +1,48 @@
 <?php
-function startTimer ($msg = "")
+
+function tracerVisit()
+{
+    // http://php.net/manual/en/function.json-encode.php
+    // http://php.net/manual/en/function.session-id.php
+    $tabInput = [
+        "urlPage" => $_SERVER["REQUEST_URI"],
+        "date"    => creerDate(),
+        "request" => json_encode($_REQUEST, JSON_PRETTY_PRINT),
+        "meta"    => session_id(),
+        "ip"      => filtrerIp(),
+    ];
+
+    insererLigne("Visit", $tabInput);
+}
+
+function startTimer($msg = "")
 {
     static $tabTime = [];
     static $tabMsg  = [];
-    
-    if ($msg != "")
-    {
+
+    if ($msg != "") {
         $tabTime[] = microtime(true);
-        $tabMsg[] = $msg;
-    }
-    else {
-        $now = microtime(true);
+        $tabMsg[]  = $msg;
+    } else {
+        $now       = microtime(true);
         $tabTime[] = $now;
-        $tabMsg[] = "";
-        
+        $tabMsg[]  = "";
+
         $deltaTime = $now - $tabTime[0];
         // http://php.net/manual/en/function.memory-get-peak-usage.php
         // http://php.net/manual/en/function.number-format.php
         $debugLog = ""
-            . "\n" . number_format($deltaTime * 1000, 2) . "ms"
-            . "\n" . number_format(memory_get_peak_usage(true) / 1024, 0) . "Ko"        
-            ;
-            
+        . "\n" . number_format($deltaTime * 1000, 2) . "ms"
+        . "\n" . number_format(memory_get_peak_usage(true) / 1024, 0) . "Ko"
+        ;
+
         return $debugLog;
     }
 }
-function ajouterControllerDir ($cheminController)
+function ajouterControllerDir($cheminController)
 {
     global $tabCheminController;
-    $hash = md5($cheminController);
+    $hash                       = md5($cheminController);
     $tabCheminController[$hash] = $cheminController;
 }
 
@@ -536,8 +550,7 @@ function traiterForm(...$tabGoal)
             // http://php.net/manual/fr/function.preg-replace.php
             $formName = preg_replace("/[^a-zA-Z0-9-_]/i", "", $formName);
 
-            foreach($tabCheminController as $cheminController)
-            {
+            foreach ($tabCheminController as $cheminController) {
                 // http://php.net/manual/fr/function.glob.php
                 $tabFichier = glob("$cheminController/form-$formName.php");
                 foreach ($tabFichier as $fichier) {
