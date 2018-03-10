@@ -7,6 +7,7 @@ $codeResponse = ob_get_clean();
 
 
 if ($codeResponse != "") {
+    // finir le timer
     $timerLog = startTimer();
     $debugBody =
 <<<CODEHTML
