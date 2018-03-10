@@ -5,21 +5,22 @@ tracerVisit();
 // http://php.net/manual/fr/function.ob-get-clean.php
 $codeResponse = ob_get_clean();
 
-
-if ($codeResponse != "") {
-    // finir le timer
-    $timerLog = startTimer();
-    $debugBody =
-<<<CODEHTML
+// finir le timer
+$timerLog  = startTimer();
+$debugBody =
+    <<<CODEHTML
 <pre>
-    $timerLog
+$timerLog
 </pre>
 
-    </body>
-    
+
+
 CODEHTML;
-    $codeResponse = str_replace("</body>", $debugBody, $codeResponse);
+
+if ($codeResponse != "") {
+    $codeResponse = str_replace("</body>", "$debugBody</body>", $codeResponse);
     echo $codeResponse;
-}
-else
+} else {
+    echo $debugBody;
     ajouterErreurSQL();
+}
