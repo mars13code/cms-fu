@@ -59,7 +59,7 @@ function extraireUri($rootDir)
 
 function afficherPage ()
 {
-    global $rootDir;
+    global $rootDir, $dossierTheme;
     
     $uriPage   = extraireUri($rootDir);
     $tabResult = trouverLigne("Page", "urlPage", $uriPage);
@@ -79,7 +79,7 @@ function afficherPage ()
             }
             if ($levelOK)
             {
-                $cheminTemplate = "../private/view-template/$template.php";
+                $cheminTemplate = "$dossierTheme/view-template/$template.php";
                 // http://php.net/manual/fr/function.glob.php
                 $tabTemplate = glob($cheminTemplate);
                 foreach ($tabTemplate as $fichierTemplate) {

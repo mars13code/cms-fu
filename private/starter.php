@@ -23,6 +23,9 @@ $dbSQL      ?? $dbSQL   = "cmsFun";
 $userSQL    ?? $userSQL = "root";
 $passSQL    ?? $passSQL = "";
 
+//$dossierTheme = "../private";
+$dossierTheme = "../projet/theme/base";
+
 // charger les déclarations de mes fonctions
 require_once(__DIR__ . "/functions.php");
 
