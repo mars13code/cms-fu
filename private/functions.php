@@ -70,12 +70,22 @@ function afficherPage ()
             $tabLigne = array_map("htmlspecialchars", $tabLigne);
             extract($tabLigne);
             $template ?? $template = "";
-        
-            $cheminTemplate = "../private/view-template/$template.php";
-            // http://php.net/manual/fr/function.glob.php
-            $tabTemplate = glob($cheminTemplate);
-            foreach ($tabTemplate as $fichierTemplate) {
-                require_once($fichierTemplate);
+            $level ?? $level = 0;
+            $levelOK = true;
+            if ($level > 0)
+            {
+                $levelUser = lireSession("level");
+                if ($level > $levelUser) $levelOK = false;
+            }
+            if ($levelOK)
+            {
+                $cheminTemplate = "../private/view-template/$template.php";
+                // http://php.net/manual/fr/function.glob.php
+                $tabTemplate = glob($cheminTemplate);
+                foreach ($tabTemplate as $fichierTemplate) {
+                    require_once($fichierTemplate);
+                }
+                
             }
         }
         

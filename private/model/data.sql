@@ -23,9 +23,9 @@ VALUES
 INSERT IGNORE INTO Framework 
 ( step, sequence, pool, method, param, code, level, cle )
 VALUES
-('1',   'init', 'framework', 'initCMS', '', 'start framework', '0', 'framework'),
-('10',  'init', 'framework', 'traiterForm', '', 'start framework', '0', 'framework'),
-('100', 'init', 'framework', 'afficherPage', '', 'start framework', '0', 'framework'),
-('50',  'plugin', 'test', 'toto', '', 'start framework', '0', 'framework'),
-('1000', 'end', 'framework', 'endCMS', '', 'end framework', '0', 'framework')
+('1',    'init',     'framework',    'initCMS',      '', 'start framework', '0', 'framework'),
+('10',   'init',     'framework',    'traiterForm',  '', 'start framework', '0', 'framework'),
+('50',   'plugin',   'test',         'toto',         '', 'start framework', '0', 'framework'),
+('100',  'init',     'framework',    'afficherPage', '', 'start framework', '0', 'framework'),
+('1000', 'end',      'framework',    'endCMS',       '', 'end framework', '0', 'framework')
 ;
