@@ -1,5 +1,23 @@
 <?php
 
+function installerTableSQL()
+{
+    $tabScript = [ "database.sql", "data.sql" ];
+    foreach($tabScript as $script)
+    {
+        $cheminSQL = __DIR__ . trim("/model/$script");
+        if (is_file($cheminSQL)) {
+            $codeSQL = file_get_contents($cheminSQL);
+            $codeSQL = trim($codeSQL);
+            if ($codeSQL != "") {
+                envoyerRequeteSQL($codeSQL);
+            }
+    
+        }
+        
+    }
+}
+
 function afficherOption($cle, $defaut = "")
 {
     global $tabOption;
@@ -247,8 +265,8 @@ function creerDate($format = "Y-m-d H:i:s")
 
 function envoyerRequeteSQL($codeSQL, $tabInput = [])
 {
-    static $objetPDO = null;
-
+    static $objetPDO   = null;
+    $objetPDOStatement = null;
     try {
         if ($objetPDO == null) {
             global $dbSQL, $userSQL, $passSQL;
@@ -263,6 +281,12 @@ function envoyerRequeteSQL($codeSQL, $tabInput = [])
         $objetPDOStatement->setFetchMode(PDO::FETCH_ASSOC);
 
     } catch (PDOException $exception) {
+        $errorCode = $exception->getCode();
+        var_dump($errorCode);
+        if ($errorCode == "42S02") {
+            // Base table or view not found
+            installerTableSQL();
+        }
         echo "[SQL]" . $exception->getMessage();
         if ($objetPDOStatement != null) {
             $objetPDOStatement->debugDumpParams();
