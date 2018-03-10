@@ -173,7 +173,8 @@ function afficherPage()
 
             }
             if ($levelOK) {
-                $cheminTemplate = "$dossierTheme/view-template/$template.php";
+                $themeActive    = lireOption("cms.theme");
+                $cheminTemplate = "$dossierTheme/$themeActive/view-template/$template.php";
                 // http://php.net/manual/fr/function.glob.php
                 $tabTemplate = glob($cheminTemplate);
                 foreach ($tabTemplate as $fichierTemplate) {

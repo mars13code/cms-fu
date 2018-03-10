@@ -23,13 +23,14 @@ VALUES
 ;
 
 INSERT IGNORE INTO Framework 
-(   id,     step,   sequence,         pool,           method,         param,      code, level, cle )
+(   id,     step,   sequence,         pool,           method,         param,        code, level, cle )
 VALUES
-(   '1',     '10',    'init',         'framework',    'initCMS',      '',        'start framework', '0', ''),
-(   '2',     '100',   'option',       '',             '',             'test',    'hello', '0', 'framework'),
-(   '3',     '200',   'theme',        'base',         'index',        '',        'start framework', '0', ''),
-(   '4',     '300',   'plugin',       'test',         'toto',         '',        'start framework', '0', ''),
-(   '5',     '1000',  'controller',   'framework',    'traiterForm',  '',        'start framework', '0', ''),
-(   '6',     '2000',  'view',         'framework',    'afficherPage', '',        'start framework', '0', ''),
-(   '7',     '10000', 'end',          'framework',    'endCMS',       '',        'end framework', '0', '')
+(   '1',     '10',    'init',         'framework',    'initCMS',      '',           'start framework', '0', ''),
+(   '2',     '100',   'option',       '',             '',             'cms.theme',  'base', '0', 'framework'),
+(   '3',     '110',   'option',       '',             '',             'test',       'hello', '0', 'framework'),
+(   '4',     '200',   'theme',        'base',         'index',        '',           'start framework', '0', ''),
+(   '5',     '300',   'plugin',       'test',         'toto',         '',           'start framework', '0', ''),
+(   '6',     '1000',  'controller',   'framework',    'traiterForm',  '',           'start framework', '0', ''),
+(   '7',     '2000',  'view',         'framework',    'afficherPage', '',           'start framework', '0', ''),
+(   '8',     '10000', 'end',          'framework',    'endCMS',       '',           'end framework', '0', '')
 ;

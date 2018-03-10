@@ -22,7 +22,7 @@ $userSQL    ?? $userSQL = "root";
 $passSQL    ?? $passSQL = "";
 
 //$dossierTheme = "../private";
-$dossierTheme = "../projet/theme/base";
+$dossierTheme = "../projet/theme";
 
 // charger les déclarations de mes fonctions
 require_once(__DIR__ . "/functions.php");
