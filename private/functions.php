@@ -1,4 +1,24 @@
 <?php
+
+function afficherOption($cle, $defaut = "")
+{
+    global $tabOption;
+    echo $tabOption[$cle] ?? $defaut;
+}
+
+function lireOption($cle, $defaut = "")
+{
+    global $tabOption;
+    return $tabOption[$cle] ?? $defaut;
+}
+
+function ecrireOption($cle, $valeur)
+{
+    global $tabOption;
+    $tabOption ?? $tabOption = [];
+    $tabOption[$cle]         = $valeur;
+}
+
 function afficher($varGlobale, $defaut = "")
 {
     if (isset($GLOBALS[$varGlobale])) {
@@ -34,6 +54,15 @@ CODESQL;
             if (is_file($cheminFichier)) {
                 require_once $cheminFichier;
             }
+        } else {
+            if ($sequence == "option") {
+                $param ?? $param = "";
+                $code ?? $code   = "";
+                if ($param != "") {
+                    ecrireOption($param, $code);
+                }
+
+            }
         }
     }
 }
@@ -57,45 +86,44 @@ function extraireUri($rootDir)
     return $result;
 }
 
-function afficherPage ()
+function afficherPage()
 {
     global $rootDir, $dossierTheme;
-    
+
     $uriPage   = extraireUri($rootDir);
     $tabResult = trouverLigne("Page", "urlPage", $uriPage);
-    if(is_object($tabResult))
-    {
+    if (is_object($tabResult)) {
         //print_r($tabResult);
-        foreach($tabResult as $tabLigne) {
+        foreach ($tabResult as $tabLigne) {
             $tabLigne = array_map("htmlspecialchars", $tabLigne);
             extract($tabLigne);
             $template ?? $template = "";
-            $level ?? $level = 0;
-            $levelOK = true;
-            if ($level > 0)
-            {
+            $level ?? $level       = 0;
+            $levelOK               = true;
+            if ($level > 0) {
                 $levelUser = lireSession("level");
-                if ($level > $levelUser) $levelOK = false;
+                if ($level > $levelUser) {
+                    $levelOK = false;
+                }
+
             }
-            if ($levelOK)
-            {
+            if ($levelOK) {
                 $cheminTemplate = "$dossierTheme/view-template/$template.php";
                 // http://php.net/manual/fr/function.glob.php
                 $tabTemplate = glob($cheminTemplate);
                 foreach ($tabTemplate as $fichierTemplate) {
-                    require_once($fichierTemplate);
+                    require_once $fichierTemplate;
                 }
-                
+
             }
         }
-        
+
     }
     if (empty($tabLigne)) {
         echo "ERREUR 404: $uriPage";
     }
-    
-}
 
+}
 
 function filtrerAcces($cle, $valeur)
 {
