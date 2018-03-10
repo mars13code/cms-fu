@@ -23,7 +23,7 @@ VALUES
 ;
 
 INSERT IGNORE INTO Framework 
-(   id,     step,   sequence,       pool,           method,         param,      code, level, cle )
+(   id,     step,   sequence,         pool,           method,         param,      code, level, cle )
 VALUES
 (   '1',     '1',     'init',         'framework',    'initCMS',      '',        'start framework', '0', 'framework'),
 (   '2',     '20',    'option',       '',             '',             'test',    'hello', '0', 'framework'),

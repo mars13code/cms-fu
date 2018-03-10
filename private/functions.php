@@ -1,5 +1,11 @@
 <?php
 
+function ajouterControllerDir ($cheminController)
+{
+    global $tabCheminController;
+    $tabCheminController[] = $cheminController;
+}
+
 function installerTableSQL()
 {
     $tabScript = ["database.sql", "data.sql"];
@@ -480,7 +486,7 @@ CODESQL;
 
 function traiterForm(...$tabGoal)
 {
-    global $cheminController;
+    global $tabCheminController;
     global $tabErreur; // obligatoire pour les fichiers de traitement...
 
     static $feedback = "";
@@ -503,12 +509,15 @@ function traiterForm(...$tabGoal)
             // sécurité: enlever les caractères spéciaux
             // http://php.net/manual/fr/function.preg-replace.php
             $formName = preg_replace("/[^a-zA-Z0-9-_]/i", "", $formName);
-            // http://php.net/manual/fr/function.glob.php
-            $tabFichier = glob("$cheminController/form-$formName.php");
-            foreach ($tabFichier as $fichier) {
-                require_once $fichier;
-            }
 
+            foreach($tabCheminController as $cheminController)
+            {
+                // http://php.net/manual/fr/function.glob.php
+                $tabFichier = glob("$cheminController/form-$formName.php");
+                foreach ($tabFichier as $fichier) {
+                    require_once $fichier;
+                }
+            }
             // http://php.net/manual/fr/function.ob-get-clean.php
             $feedback = ob_get_clean();
         }

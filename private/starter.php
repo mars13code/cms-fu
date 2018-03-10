@@ -16,8 +16,6 @@ if ($cmsMode == "DEV")
 }
 
 // variables globales
-// dossier qui va grouper les fichiers de traitement de formulaire
-$cheminController = __DIR__ . "/controller";
 
 $dbSQL      ?? $dbSQL   = "cmsFun";
 $userSQL    ?? $userSQL = "root";
@@ -28,5 +26,11 @@ $dossierTheme = "../projet/theme/base";
 
 // charger les déclarations de mes fonctions
 require_once(__DIR__ . "/functions.php");
+
+// variables globales
+// dossiers qui vont grouper les fichiers de traitement de formulaire
+// les plugins et les themes pourront ajouter leurs dossiers...
+// chemin par defaut du cms
+ajouterControllerDir(__DIR__ . "/controller");
 
 startCMS();
