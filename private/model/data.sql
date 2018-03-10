@@ -9,6 +9,8 @@ INSERT IGNORE INTO Page
 VALUES
 ('index', 'accueil', 'contenu de la page accueil', 'index'),
 ('galerie', 'galerie', 'contenu de la page galerie', 'defaut'),
+('contact', 'contact', 'contenu de la page contact', 'defaut'),
+('ajax', 'ajax', 'contenu de la page ajax', 'ajax'),
 ('inscription', 'inscription', 'contenu de la page inscription', 'inscription'),
 ('login', 'login', 'contenu de la page login', 'login'),
 ('logout', 'logout', 'contenu de la page logout', 'logout'),
