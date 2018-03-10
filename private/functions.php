@@ -15,8 +15,14 @@ function startTimer ($msg = "")
         $tabMsg[] = "";
         
         $deltaTime = $now - $tabTime[0];
+        // http://php.net/manual/en/function.memory-get-peak-usage.php
         // http://php.net/manual/en/function.number-format.php
-        return number_format($deltaTime * 1000, 2) . "ms";
+        $debugLog = ""
+            . "\n" . number_format($deltaTime * 1000, 2) . "ms"
+            . "\n" . number_format(memory_get_peak_usage(true) / 1024, 0) . "Ko"        
+            ;
+            
+        return $debugLog;
     }
 }
 function ajouterControllerDir ($cheminController)
