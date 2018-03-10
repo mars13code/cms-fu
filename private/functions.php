@@ -1,9 +1,29 @@
 <?php
-
+function startTimer ($msg = "")
+{
+    static $tabTime = [];
+    static $tabMsg  = [];
+    
+    if ($msg != "")
+    {
+        $tabTime[] = microtime(true);
+        $tabMsg[] = $msg;
+    }
+    else {
+        $now = microtime(true);
+        $tabTime[] = $now;
+        $tabMsg[] = "";
+        
+        $deltaTime = $now - $tabTime[0];
+        // http://php.net/manual/en/function.number-format.php
+        return number_format($deltaTime * 1000, 2) . "ms";
+    }
+}
 function ajouterControllerDir ($cheminController)
 {
     global $tabCheminController;
-    $tabCheminController[] = $cheminController;
+    $hash = md5($cheminController);
+    $tabCheminController[$hash] = $cheminController;
 }
 
 function installerTableSQL()
