@@ -21,12 +21,12 @@ VALUES
 ;
 
 INSERT IGNORE INTO Framework 
-(   step,   sequence,       pool,           method,         param,      code, level, cle )
+(   id,     step,   sequence,       pool,           method,         param,      code, level, cle )
 VALUES
-(   '1',     'init',         'framework',    'initCMS',      '',        'start framework', '0', 'framework'),
-(   '20',    'option',       '',             '',             'test',    'hello', '0', 'framework'),
-(   '100',   'controller',   'framework',    'traiterForm',  '',        'start framework', '0', 'framework'),
-(   '500',   'plugin',       'test',         'toto',         '',        'start framework', '0', 'framework'),
-(   '1000',  'view',         'framework',    'afficherPage', '',        'start framework', '0', 'framework'),
-(   '10000', 'end',          'framework',    'endCMS',       '',        'end framework', '0', 'framework')
+(   '1',     '1',     'init',         'framework',    'initCMS',      '',        'start framework', '0', 'framework'),
+(   '2',     '20',    'option',       '',             '',             'test',    'hello', '0', 'framework'),
+(   '3',     '100',   'controller',   'framework',    'traiterForm',  '',        'start framework', '0', 'framework'),
+(   '4',     '500',   'plugin',       'test',         'toto',         '',        'start framework', '0', 'framework'),
+(   '5',     '1000',  'view',         'framework',    'afficherPage', '',        'start framework', '0', 'framework'),
+(   '6',     '10000', 'end',          'framework',    'endCMS',       '',        'end framework', '0', 'framework')
 ;
