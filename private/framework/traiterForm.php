@@ -1,5 +1,4 @@
 <?php
 
-
 // controller
 traiterForm();

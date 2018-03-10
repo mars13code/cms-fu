@@ -1,0 +1,3 @@
+<?php
+
+ecrireOption("theme", "base");

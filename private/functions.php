@@ -2,9 +2,8 @@
 
 function installerTableSQL()
 {
-    $tabScript = [ "database.sql", "data.sql" ];
-    foreach($tabScript as $script)
-    {
+    $tabScript = ["database.sql", "data.sql"];
+    foreach ($tabScript as $script) {
         $cheminSQL = __DIR__ . trim("/model/$script");
         if (is_file($cheminSQL)) {
             $codeSQL = file_get_contents($cheminSQL);
@@ -12,9 +11,9 @@ function installerTableSQL()
             if ($codeSQL != "") {
                 envoyerRequeteSQL($codeSQL);
             }
-    
+
         }
-        
+
     }
 }
 
@@ -65,6 +64,8 @@ CODESQL;
             $dossierRacine = __DIR__;
             if ($sequence == "plugin") {
                 $dossierRacine = __DIR__ . "/../projet/plugin";
+            } elseif ($sequence == "theme") {
+                $dossierRacine = __DIR__ . "/../projet/theme";
             }
 
             $cheminFichier = "$dossierRacine/$pool/$method.php";
@@ -263,6 +264,33 @@ function creerDate($format = "Y-m-d H:i:s")
     return date($format);
 }
 
+function ajouterErreurSQL(...$tabParam)
+{
+    static $tabErreur    = [];
+    static $tabStatement = [];
+    if (!empty($tabParam)) {
+        $p0 = $tabParam[0];
+        $p1 = $tabParam[1];
+        if (is_object($p0)) {
+            $tabErreur[]    = $p0;
+            $tabStatement[] = $p1;
+            if ($p1 != null) {
+                $p1->debugDumpParams();
+            }
+        }
+    } else {
+        foreach ($tabErreur as $index => $e) {
+
+            echo "<pre>";
+            echo $e->getMessage();
+            echo "</pre>";
+            $objetPDOStatement = $tabStatement[$index];
+            if ($objetPDOStatement != null) {
+                $objetPDOStatement->debugDumpParams();
+            }
+        }
+    }
+}
 function envoyerRequeteSQL($codeSQL, $tabInput = [])
 {
     static $objetPDO   = null;
@@ -281,16 +309,11 @@ function envoyerRequeteSQL($codeSQL, $tabInput = [])
         $objetPDOStatement->setFetchMode(PDO::FETCH_ASSOC);
 
     } catch (PDOException $exception) {
+        ajouterErreurSQL($exception, $objetPDOStatement);
         $errorCode = $exception->getCode();
-        var_dump($errorCode);
         if ($errorCode == "42S02") {
             // Base table or view not found
             installerTableSQL();
-        }
-        echo "[SQL]" . $exception->getMessage();
-        if ($objetPDOStatement != null) {
-            $objetPDOStatement->debugDumpParams();
-            print_r($objetPDOStatement);
         }
     }
     return $objetPDOStatement;

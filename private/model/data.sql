@@ -25,8 +25,9 @@ INSERT IGNORE INTO Framework
 VALUES
 (   '1',     '1',     'init',         'framework',    'initCMS',      '',        'start framework', '0', 'framework'),
 (   '2',     '20',    'option',       '',             '',             'test',    'hello', '0', 'framework'),
-(   '3',     '100',   'controller',   'framework',    'traiterForm',  '',        'start framework', '0', 'framework'),
-(   '4',     '500',   'plugin',       'test',         'toto',         '',        'start framework', '0', 'framework'),
-(   '5',     '1000',  'view',         'framework',    'afficherPage', '',        'start framework', '0', 'framework'),
-(   '6',     '10000', 'end',          'framework',    'endCMS',       '',        'end framework', '0', 'framework')
+(   '3',     '50',    'theme',        'base',         'index',        '',        'start framework', '0', 'framework'),
+(   '4',     '100',   'controller',   'framework',    'traiterForm',  '',        'start framework', '0', 'framework'),
+(   '5',     '500',   'plugin',       'test',         'toto',         '',        'start framework', '0', 'framework'),
+(   '6',     '1000',  'view',         'framework',    'afficherPage', '',        'start framework', '0', 'framework'),
+(   '7',     '10000', 'end',          'framework',    'endCMS',       '',        'end framework', '0', 'framework')
 ;

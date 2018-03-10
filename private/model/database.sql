@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `Jointure` (
   `idTable2`          int(11)         NOT NULL,
   `level`             int(11)         NOT NULL,
   `cle`               varchar(190)    NOT NULL,
+  `valeur`            text            NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
 

@@ -7,6 +7,7 @@
                     <p><a href="admin.php">admin</a></p>
                     <?php afficher("hello") ?>
                     <?php afficherOption("test") ?>
+                    <?php afficherOption("theme") ?>
             </footer>
 
         </div>
