@@ -9,7 +9,7 @@ INSERT IGNORE INTO Page
 VALUES
 ('index', 'accueil', 'contenu de la page accueil', 'index'),
 ('galerie', 'galerie', 'contenu de la page galerie', 'defaut'),
-('contact', 'contact', 'contenu de la page contact', 'defaut'),
+('contact', 'contact', 'contenu de la page contact', 'contact'),
 ('ajax', 'ajax', 'contenu de la page ajax', 'ajax'),
 ('inscription', 'inscription', 'contenu de la page inscription', 'inscription'),
 ('login', 'login', 'contenu de la page login', 'login'),
@@ -28,8 +28,8 @@ VALUES
 (   '1',     '1',     'init',         'framework',    'initCMS',      '',        'start framework', '0', 'framework'),
 (   '2',     '20',    'option',       '',             '',             'test',    'hello', '0', 'framework'),
 (   '3',     '50',    'theme',        'base',         'index',        '',        'start framework', '0', 'framework'),
-(   '4',     '100',   'controller',   'framework',    'traiterForm',  '',        'start framework', '0', 'framework'),
-(   '5',     '500',   'plugin',       'test',         'toto',         '',        'start framework', '0', 'framework'),
+(   '4',     '60',    'plugin',       'test',         'toto',         '',        'start framework', '0', 'framework'),
+(   '5',     '100',   'controller',   'framework',    'traiterForm',  '',        'start framework', '0', 'framework'),
 (   '6',     '1000',  'view',         'framework',    'afficherPage', '',        'start framework', '0', 'framework'),
 (   '7',     '10000', 'end',          'framework',    'endCMS',       '',        'end framework', '0', 'framework')
 ;

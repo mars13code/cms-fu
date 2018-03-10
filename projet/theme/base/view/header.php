@@ -16,6 +16,7 @@
                 <ul>
                     <li><a href="index.php">accueil</a></li>
                     <li><a href="galerie.php">galerie</a></li>
+                    <li><a href="contact.php">contact</a></li>
                     <li><a href="inscription.php">inscription</a></li>
                     <li><a href="espace-membre.php">espace membre</a></li>
                 </ul>
