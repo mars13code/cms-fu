@@ -17,9 +17,12 @@ function ajouterAction($tag, ...$tabParam)
         ksort($tabInfo, SORT_NATURAL);
         ob_start();
         foreach ($tabInfo["$tag"] as $cle => $valeur) {
-            
-            if ((false !== mb_stristr($cle, "@function")) && is_callable($valeur)) {
-                $valeur();
+
+            if ((false !== mb_stristr($cle, "@function"))
+                && is_callable($valeur)) {
+                // la fonction peut faire echo ou return
+                // les 2 manières vont produire un contenu...
+                echo $valeur();
             } else {
                 echo $valeur;
             }
