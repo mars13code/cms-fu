@@ -1,5 +1,10 @@
 <?php
 
+function afficherAction ($tag)
+{
+    echo ajouterAction($tag);
+}
+
 function ajouterAction($tag, ...$tabParam)
 {
     static $tabInfo = [];

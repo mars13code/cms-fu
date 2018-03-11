@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="assets/css/site.css" type="text/css">
         <style>
         </style>
+        <?php afficherAction("head-theme") ?>
     </head>
     <body>
         <div class="page">
