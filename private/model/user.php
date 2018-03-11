@@ -11,12 +11,12 @@ $tabUser = file(__DIR__ . "/user.csv");
 foreach ($tabUser as $ligneCSV) {
     $ligneCSV = trim($ligneCSV);
     if ($ligneCSV != "") {
-        list($nom, $email, $pass, $level) = explode(",", $ligneCSV);
+        list($id, $nom, $email, $pass, $level) = explode(",", $ligneCSV);
         // http://php.net/manual/fr/function.password-hash.php
         $passH = password_hash($pass, PASSWORD_DEFAULT);
         $date  = date("Y-m-d H:i:s");
 
-        $codeSQL .= "\n" . "( '$nom', '$email', '$passH', '$level', '$date' ),";
+        $codeSQL .= "\n" . "( '$id', '$nom', '$email', '$passH', '$level', '$date' ),";
     }
 }
 $codeSQL = trim($codeSQL, ",");
@@ -26,7 +26,7 @@ $contenuSQL =
 USE `cmsFun`;
 
 INSERT IGNORE INTO User
-( nom, email, password, level, date )
+( id, nom, email, password, level, date )
 VALUES
 $codeSQL
 ;
