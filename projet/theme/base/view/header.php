@@ -4,9 +4,7 @@
         <meta charset="utf-8">
         <title>CRUD</title>
         <link rel="stylesheet" href="assets/css/site.css" type="text/css">
-        <style>
-        </style>
-        <?php afficherAction("head-theme") ?>
+        <?php afficherAction("theme.head") ?>
     </head>
     <body>
         <div class="page">

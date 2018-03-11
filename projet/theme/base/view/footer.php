@@ -9,7 +9,8 @@
                     <?php afficherOption("test") ?>
                     <?php afficherOption("theme") ?>
             </footer>
-            
+
         </div>
+        <?php afficherAction("theme.foot") ?>
     </body>
 </html>

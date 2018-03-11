@@ -13,7 +13,14 @@ function ajouterAction($tag, ...$tabParam)
         $cle    = $tabParam[0] ?? "";
         $valeur = $tabParam[1] ?? "";
         if ($cle != "") {
-            $tabInfo["$tag"]["$cle"] = $valeur;
+            if ($valeur !== null) {
+                // modifier ou ajouter une nouvelle action
+                $tabInfo["$tag"]["$cle"] = $valeur;
+            }
+            elseif(isset($tabInfo["$tag"]["$cle"])) {
+                // enlever l'action
+                unset($tabInfo["$tag"]["$cle"]);
+            }
         }
 
     } elseif (isset($tabInfo["$tag"])) {

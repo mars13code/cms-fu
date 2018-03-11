@@ -56,7 +56,7 @@ function faireTestFoot ()
     echo "TEST";
 }
 
-ajouterAction("head-theme", "100-test@function", "faireTestHeadTheme");
+ajouterAction("theme.head", "100-test@function", "faireTestHeadTheme");
 ajouterAction("head", "100-test@function", "faireTestHead");
 ajouterAction("foot", "100-test", $codeFoot);
 ajouterAction("foot", "100-test2@function", "faireTestFoot");
