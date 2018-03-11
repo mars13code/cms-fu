@@ -6,8 +6,11 @@ ecrireOption("theme", "base");
 
 function faireToto ()
 {
-    echo "(TEST THEME.FOOT)";
+    // il est possible de faire echo
+    echo date("Y-m-d H:i:s");     
+    // et il est aussi possible de faire return
+    return "(TEST THEME.FOOT)";
 }
 
 ajouterAction("theme.foot", "100-base@function", "faireToto");
-ajouterAction("theme.foot", "100-base@function", null);
+//ajouterAction("theme.foot", "100-base@function", null);
