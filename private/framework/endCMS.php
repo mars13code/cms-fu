@@ -13,8 +13,6 @@ $debugBody =
 $timerLog
 </pre>
 
-
-
 CODEHTML;
 
 $extension = lireOption("cms.extension");
