@@ -2,38 +2,54 @@
 
 function ajouterHtmlHead(...$tabParam)
 {
-    static $tabHead = [];
+    static $tabInfo = [];
     $result = "";
     if (!empty($tabParam)) {
         $cle    = $tabParam[0] ?? "";
         $valeur = $tabParam[1] ?? "";
         if ($cle != "") {
-            $tabHead["$cle"] = $valeur;
-            // trier le tableau
-            // http://php.net/manual/fr/function.ksort.php
-            ksort($tabHead, SORT_NATURAL);
+            $tabInfo["$cle"] = $valeur;
         }
     } else {
-        $result = "\n" . implode("\n", $tabHead) . "\n";
+        // trier le tableau
+        // http://php.net/manual/fr/function.ksort.php
+        ksort($tabInfo, SORT_NATURAL);
+        foreach($tabInfo as $cle => $valeur)
+        {
+            if ((false !== mb_stristr("@function", $cle)) && is_callable($valeur))
+                $result .= $valeur();
+            else 
+                $result .= $valeur;
+        }
+        trim($result);
+        $result = "\n$result\n";
     }
     return $result;
 }
 
 function ajouterHtmlFoot(...$tabParam)
 {
-    static $tabFoot = [];
+    static $tabInfo = [];
     $result = "";
     if (!empty($tabParam)) {
         $cle    = $tabParam[0] ?? "";
         $valeur = $tabParam[1] ?? "";
         if ($cle != "") {
-            $tabFoot["$cle"] = $valeur;
-            // trier le tableau
-            // http://php.net/manual/fr/function.ksort.php
-            ksort($tabFoot, SORT_NATURAL);
+            $tabInfo["$cle"] = $valeur;
         }
     } else {
-        $result = "\n" . implode("\n", $tabFoot) . "\n";
+        // trier le tableau
+        // http://php.net/manual/fr/function.ksort.php
+        ksort($tabInfo, SORT_NATURAL);
+        foreach($tabInfo as $cle => $valeur)
+        {
+            if ((false !== mb_stristr("@function", $cle)) && is_callable($valeur))
+                $result .= $valeur();
+            else 
+                $result .= $valeur;
+        }
+        trim($result);
+        $result = "\n$result\n";
     }
     return $result;
 }
