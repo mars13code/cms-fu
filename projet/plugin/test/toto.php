@@ -18,12 +18,28 @@ console.log("hello");
 
 CODEHTML;
 
-ajouterHtmlFoot("100-test", $codeFoot);
 
+function faireTestHead ()
+{
+    echo 
+<<<CODEHTML
 
-function faireTest ()
+<style>
+
+h1 {
+    color:red;
+}
+</style>
+
+CODEHTML;
+
+}
+
+function faireTestFoot ()
 {
     echo "TEST";
 }
 
-ajouterHtmlFoot("100-test2@function", "faireTest");
+ajouterAction("head", "100-test@function", "faireTestHead");
+ajouterAction("foot", "100-test", $codeFoot);
+ajouterAction("foot", "100-test2@function", "faireTestFoot");

@@ -1,56 +1,36 @@
 <?php
 
-function ajouterHtmlHead(...$tabParam)
+function ajouterAction($tag, ...$tabParam)
 {
     static $tabInfo = [];
-    $result = "";
+    $result         = "";
     if (!empty($tabParam)) {
         $cle    = $tabParam[0] ?? "";
         $valeur = $tabParam[1] ?? "";
         if ($cle != "") {
-            $tabInfo["$cle"] = $valeur;
+            $tabInfo["$tag"]["$cle"] = $valeur;
         }
-    } else {
-        // trier le tableau
-        // http://php.net/manual/fr/function.ksort.php
-        ksort($tabInfo, SORT_NATURAL);
-        foreach($tabInfo as $cle => $valeur)
-        {
-            if ((false !== mb_stristr("@function", $cle)) && is_callable($valeur))
-                $result .= $valeur();
-            else 
-                $result .= $valeur;
-        }
-        trim($result);
-        $result = "\n$result\n";
-    }
-    return $result;
-}
 
-function ajouterHtmlFoot(...$tabParam)
-{
-    static $tabInfo = [];
-    $result = "";
-    if (!empty($tabParam)) {
-        $cle    = $tabParam[0] ?? "";
-        $valeur = $tabParam[1] ?? "";
-        if ($cle != "") {
-            $tabInfo["$cle"] = $valeur;
-        }
-    } else {
+    } elseif (isset($tabInfo["$tag"])) {
         // trier le tableau
         // http://php.net/manual/fr/function.ksort.php
         ksort($tabInfo, SORT_NATURAL);
-        foreach($tabInfo as $cle => $valeur)
-        {
-            if ((false !== mb_stristr("@function", $cle)) && is_callable($valeur))
-                $result .= $valeur();
-            else 
-                $result .= $valeur;
+        ob_start();
+        foreach ($tabInfo["$tag"] as $cle => $valeur) {
+            
+            if ((false !== mb_stristr($cle, "@function")) && is_callable($valeur)) {
+                $valeur();
+            } else {
+                echo $valeur;
+            }
+
         }
+        $result = ob_get_clean();
         trim($result);
         $result = "\n$result\n";
+
     }
+
     return $result;
 }
 
