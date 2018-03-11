@@ -1,5 +1,43 @@
 <?php
 
+function ajouterHtmlHead(...$tabParam)
+{
+    static $tabHead = [];
+    $result = "";
+    if (!empty($tabParam)) {
+        $cle    = $tabParam[0] ?? "";
+        $valeur = $tabParam[1] ?? "";
+        if ($cle != "") {
+            $tabHead["$cle"] = $valeur;
+            // trier le tableau
+            // http://php.net/manual/fr/function.ksort.php
+            ksort($tabHead, SORT_NATURAL);
+        }
+    } else {
+        $result = "\n" . implode("\n", $tabHead) . "\n";
+    }
+    return $result;
+}
+
+function ajouterHtmlFoot(...$tabParam)
+{
+    static $tabFoot = [];
+    $result = "";
+    if (!empty($tabParam)) {
+        $cle    = $tabParam[0] ?? "";
+        $valeur = $tabParam[1] ?? "";
+        if ($cle != "") {
+            $tabFoot["$cle"] = $valeur;
+            // trier le tableau
+            // http://php.net/manual/fr/function.ksort.php
+            ksort($tabFoot, SORT_NATURAL);
+        }
+    } else {
+        $result = "\n" . implode("\n", $tabFoot) . "\n";
+    }
+    return $result;
+}
+
 function tracerVisit()
 {
     // http://php.net/manual/en/function.json-encode.php
@@ -174,15 +212,15 @@ function afficherImage()
 
     $im = @imagecreatetruecolor($width, $height);
     // http://php.net/manual/en/function.mt-rand.php
-    $red = mt_rand(0, 255);
+    $red   = mt_rand(0, 255);
     $green = mt_rand(0, 255);
-    $blue = mt_rand(0, 255);
-    
+    $blue  = mt_rand(0, 255);
+
     $color1 = imagecolorallocate($im, $red, $green, $blue);
     $color2 = imagecolorallocate($im, $green, $blue, $red);
     // http://php.net/manual/en/function.imagefill.php
     imagefill($im, 0, 0, $color1);
-    
+
     imagestring($im, 1, 5, 5, "$width|$height", $color2);
     imagepng($im);
     imagedestroy($im);

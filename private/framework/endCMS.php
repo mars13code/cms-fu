@@ -15,12 +15,18 @@ $timerLog
 
 CODEHTML;
 
+ajouterHtmlFoot("1000-cms", $debugBody);
+
 $extension = lireOption("cms.extension");
 if (in_array($extension, [ "jpg", "png", "gif" ]))  {
     echo $codeResponse;
 }
 elseif ($codeResponse != "") {
-    $codeResponse = str_replace("</body>", "$debugBody</body>", $codeResponse);
+    $cmsHeader = ajouterHtmlHead();
+    $cmsFooter = ajouterHtmlFoot();
+    
+    $codeResponse = str_replace("</header>", "$cmsHeader</header>", $codeResponse);
+    $codeResponse = str_replace("</body>", "$cmsFooter</body>", $codeResponse);
     echo $codeResponse;
 } else {
     echo $debugBody;
