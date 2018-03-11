@@ -16,6 +16,8 @@ $tabResult = trouverLigneJointure([ "Annonce" => "idUser", "User" => "id" ], "",
 foreach ($tabResult as $tabLigne) {
     $tabLigne = array_map("htmlspecialchars", $tabLigne);
     extract($tabLigne);
+    
+    $htmlImage = $urlImage ? '<img src="' . $urlImage . '">' : "";
     echo
         <<<CODEHTML
 
@@ -24,7 +26,7 @@ foreach ($tabResult as $tabLigne) {
         <h3><a href="annonce.php?idAnnonce=$id">$titre</a> (par $nom)</h3>
         <strong>prix: $prix euros</strong>
         <div class="description">$description</div>
-        <div>$urlImage</div>
+        <div>$htmlImage</div>
         <div>$date</div>
     </article>
 

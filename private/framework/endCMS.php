@@ -17,7 +17,11 @@ $timerLog
 
 CODEHTML;
 
-if ($codeResponse != "") {
+$extension = lireOption("cms.extension");
+if (in_array($extension, [ "jpg", "png", "gif" ]))  {
+    echo $codeResponse;
+}
+elseif ($codeResponse != "") {
     $codeResponse = str_replace("</body>", "$debugBody</body>", $codeResponse);
     echo $codeResponse;
 } else {

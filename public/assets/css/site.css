@@ -58,6 +58,8 @@ td {
 .ligne {
     display: flex;
     width: 100%;
+    justify-content:center;
+    flex-wrap:wrap;
 }
 
 .ligne.col3>* {
@@ -65,6 +67,14 @@ td {
     padding: 1rem;
 }
 
+.ligne.col2>* {
+    width: calc(100% / 2);
+    padding: 1rem;
+}
+
+img {
+    width:100%;
+}
 /*
 
 FLEXBOX:

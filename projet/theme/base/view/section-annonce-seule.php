@@ -1,7 +1,7 @@
 
            <section>
                 <h2>ANNONCE SEULE</h2>
-                <div class="ligne col3">
+                <div class="ligne col2">
                     
 <?php
 
@@ -17,6 +17,8 @@ $tabResult = trouverLigneJointure([ "Annonce" => "idUser", "User" => "id" ], "An
 foreach ($tabResult as $tabLigne) {
     $tabLigne = array_map("htmlspecialchars", $tabLigne);
     extract($tabLigne);
+    $htmlImage = $urlImage ? '<img src="' . $urlImage . '">' : "";
+
     echo
         <<<CODEHTML
 
@@ -25,7 +27,7 @@ foreach ($tabResult as $tabLigne) {
         <h3><a href="annonce.php?idAnnonce=$id">$titre</a> (par $nom)</h3>
         <strong>prix: $prix euros</strong>
         <div>$description</div>
-        <div>$urlImage</div>
+        <div>$htmlImage</div>
         <div>$date</div>
     </article>
 

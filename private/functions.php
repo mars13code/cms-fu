@@ -147,8 +147,46 @@ function extraireUri($rootDir)
 
     // enlever le suffixe
     // http://php.net/manual/fr/function.pathinfo.php
-    $result = pathinfo($result, PATHINFO_FILENAME);
-    return $result;
+    $filename  = pathinfo($result, PATHINFO_FILENAME);
+    $extension = pathinfo($result, PATHINFO_EXTENSION);
+
+    // memoriser pour les autres
+    ecrireOption("cms.path", $result);
+    ecrireOption("cms.filename", $filename);
+    ecrireOption("cms.extension", $extension);
+
+    return $filename;
+}
+
+function afficherImage()
+{
+    // http://php.net/manual/en/function.imagecreatetruecolor.php
+    header('Content-Type: image/png');
+    $path     = lireOption("cms.path");
+    $filename = lireOption("cms.filename");
+    // http://php.net/manual/en/function.sscanf.php
+    $name = $width = $height = 0;
+    //list($name, $width, $height) = sscanf($filename, "%s,%d,%d");
+    list($width, $height, $name) = sscanf($filename, "%dx%d-%s");
+
+    $width  = min($width, 2000);
+    $height = min($height, 2000);
+
+    $im = @imagecreatetruecolor($width, $height);
+    // http://php.net/manual/en/function.mt-rand.php
+    $red = mt_rand(0, 255);
+    $green = mt_rand(0, 255);
+    $blue = mt_rand(0, 255);
+    
+    $color1 = imagecolorallocate($im, $red, $green, $blue);
+    $color2 = imagecolorallocate($im, $green, $blue, $red);
+    // http://php.net/manual/en/function.imagefill.php
+    imagefill($im, 0, 0, $color1);
+    
+    imagestring($im, 1, 5, 5, "$width|$height", $color2);
+    imagepng($im);
+    imagedestroy($im);
+
 }
 
 function afficherPage()
@@ -186,7 +224,12 @@ function afficherPage()
 
     }
     if (empty($tabLigne)) {
-        echo "ERREUR 404: $uriPage";
+        $extension = lireOption("cms.extension");
+        if ($extension == "jpg") {
+            afficherImage();
+        } else {
+            echo "ERREUR 404: $uriPage";
+        }
     }
 
 }
