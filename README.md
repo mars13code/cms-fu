@@ -11,17 +11,25 @@ Construire un CMS en langage PHP avec des fonctions
 
 ## Prérequis
 
+La plupart des hébergements web mutualisés proposent un serveur LAMP
+
 * Serveur web LAMP, WAMP, MAMP, XAMP, etc...
 * PHP7
 * MySQL5
 
+Conseils:
+* prendre un hébergement avec accès SSH et https inclus
+* (...prix actuels autour de 5 euros/mois)
+
 ## USAGE
 
-NE PAS OUBLIER DE CHANGER LE CODE DANS LE DOSSIER public
+Ne pas oublier de changer les fichiers dans le dossier /public/
+* pour adapter les chemins vers le dossier racine du site
+* pour adapter les infos de connexion à MySQL
 
 * public/index.php
 
-Et si vous utlisez un serveur web LAMP (avec Apache)
+Et si vous utilisez un serveur web LAMP (avec Apache)
 
 * public/.htaccess
 
