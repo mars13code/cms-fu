@@ -72,7 +72,7 @@ function afficherPage()
     if (empty($tabLigne)) {
         $extension = lireOption("cms.extension");
         if (in_array($extension, [ "jpg", "jpeg", "png", "gif" ])) {
-            afficherImage();
+            creerImage();
         } else {
             echo "ERREUR 404: $uriPage";
         }
@@ -99,7 +99,7 @@ CODEHTML;
     echo $resultat;
 }
 
-function afficherImage()
+function creerImage($cheminCible=null)
 {
     // http://php.net/manual/en/function.imagecreatetruecolor.php
     header('Content-Type: image/png');
@@ -178,15 +178,15 @@ function afficherImage()
     // format de sortie    
     if (in_array($extension, [ "jpg", "jpeg" ])) {
         // http://php.net/manual/fr/function.imagecreatefromjpeg.php
-        imagejpeg($im);
+        imagejpeg($im, $cheminCible);
     }
     elseif (in_array($extension, [ "png" ])) {
         // http://php.net/manual/fr/function.imagecreatefromjpeg.php
-        imagepng($im);
+        imagepng($im, $cheminCible);
     }
     elseif (in_array($extension, [ "gif" ])) {
         // http://php.net/manual/fr/function.imagecreatefromjpeg.php
-        imagegif($im);
+        imagegif($im, $cheminCible);
     }
     imagedestroy($im);
 
