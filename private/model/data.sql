@@ -29,26 +29,23 @@ INSERT IGNORE INTO Page
 ( urlPage, titre, template, priority, category, dataType )
 VALUES
 /* NAV */
-(null, 'Accueil', 'index', '1', 'principal', 'nav'),
-(null, 'Galerie', 'galerie', '2', 'principal', 'nav'),
-(null, 'Contact', 'contact', '3', 'principal', 'nav'),
-(null, 'Inscription', 'inscription', '4', 'principal', 'nav'),
-(null, 'Espace Membre', 'espace-membre', '5', 'principal', 'nav'),
+(null, 'Galerie', 'galerie.html', '2', 'principal', 'nav'),
+(null, 'Contact', 'contact.html', '3', 'principal', 'nav'),
+(null, 'Inscription', 'inscription.html', '4', 'principal', 'nav'),
+(null, 'Espace Membre', 'espace-membre.html', '5', 'principal', 'nav'),
 /* NAV ADMIN */
-(null, 'Accueil', 'index', '1', 'membre', 'nav'),
-(null, 'Contact', 'contact', '2', 'membre', 'nav'),
-(null, 'Espace Membre', 'espace-membre', '3', 'membre', 'nav'),
-(null, 'Logout', 'logout', '4', 'membre', 'nav'),
+(null, 'Contact', 'contact.html', '2', 'membre', 'nav'),
+(null, 'Espace Membre', 'espace-membre.html', '3', 'membre', 'nav'),
+(null, 'Logout', 'logout.html', '4', 'membre', 'nav'),
 /* NAV ADMIN */
-(null, 'Accueil', 'index', '1', 'admin', 'nav'),
-(null, 'Espace Membre', 'espace-membre', '2', 'admin', 'nav'),
-(null, 'Admin', 'admin', '3', 'admin', 'nav'),
-(null, 'Admin Newsletter', 'admin-newsletter', '4', 'admin', 'nav'),
-(null, 'Logout', 'logout', '5', 'admin', 'nav'),
+(null, 'Espace Membre', 'espace-membre.html', '2', 'admin', 'nav'),
+(null, 'Admin', 'admin.html', '3', 'admin', 'nav'),
+(null, 'Admin Newsletter', 'admin-newsletter.html', '4', 'admin', 'nav'),
+(null, 'Logout', 'logout.html', '5', 'admin', 'nav'),
 /* NAV FOOTER */
-(null, 'mentions légales', 'mentions-legales', '1', 'footer', 'nav'),
-(null, 'crédits', 'credits', '2', 'footer', 'nav'),
-(null, 'admin', 'admin', '3', 'footer', 'nav')
+(null, 'mentions légales', 'mentions-legales.html', '1', 'footer', 'nav'),
+(null, 'crédits', 'credits.html', '2', 'footer', 'nav'),
+(null, 'admin', 'admin.html', '3', 'footer', 'nav')
 ;
 
 DELETE FROM Framework;

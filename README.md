@@ -7,6 +7,8 @@ Construire un CMS en langage PHP avec des fonctions
 * variables static de fonctions
 * nombre variable de paramètres pour les fonctions
 * ...et aussi SQL... sans ORM!
+* multi-upload de fichiers en Ajax et glisser-déposer
+* création d'images miniatures
 
 ## Vous venez de démarrer dans le monde web ?
 

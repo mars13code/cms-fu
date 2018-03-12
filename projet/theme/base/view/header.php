@@ -16,7 +16,7 @@
         <div class="page">
             
         <header>
-            <h1><img src="<?php filtrerInfo("page.logo") ?>" alt="<?php filtrerInfo("page.titre") ?>"></h1>
+            <h1><a href="index.html"><img src="<?php filtrerInfo("page.logo") ?>" alt="<?php filtrerInfo("page.titre") ?>"></a></h1>
             <?php afficherMenu("principal", "<nav><ul>", "</ul></nav>") ?>
         </header>
 
