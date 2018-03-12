@@ -1,6 +1,37 @@
 <?php
 
+function filtrerUpload($inputName)
+{
+    $result = "";
 
+    $dossierUpload = $GLOBALS["dossierCMS"] . "/projet/upload";
+
+    if (isset($_FILES["$inputName"])
+        && ($_FILES["$inputName"]["error"] == 0)) {
+        extract($_FILES["$inputName"]);
+
+        $extension = pathinfo($name, PATHINFO_EXTENSION);
+        $extension = strtolower($extension);
+
+        // http://php.net/manual/fr/function.in-array.php
+        if (in_array($extension, ["jpg", "jpeg", "png", "gif", "mp4", "pdf", "csv", "txt", "js", "css", "html"])) {
+            $filename = pathinfo($name, PATHINFO_FILENAME);
+
+            $filename = preg_replace("/[^a-zA-Z0-9-]/", "", $filename);
+            $filename = strtolower($filename);
+
+            //file_put_contents("$dossierUpload/toto.log", json_encode($_FILES["$inputName"]));
+            move_uploaded_file($tmp_name, "$dossierUpload/$filename.$extension");
+            $result = "$filename.$extension";
+        } else {
+            ajouterErreur("(extension) $extension est interdit");
+        }
+    } else {
+        ajouterErreur("(echec) une erreur s'est produite durant le transfert. Un nouvel essai?");
+    }
+
+    return $result;
+}
 
 function startTimer($msg = "")
 {
@@ -51,14 +82,12 @@ function installerTableSQL()
     }
 }
 
-
 function ecrireOption($cle, $valeur)
 {
     global $tabOption;
     $tabOption ?? $tabOption = [];
     $tabOption[$cle]         = $valeur;
 }
-
 
 function startCMS()
 {
@@ -126,8 +155,6 @@ function extraireUri($rootDir)
     return $filename;
 }
 
-
-
 function filtrerAcces($cle, $valeur)
 {
     $valeurSession = lireSession($cle, 0);
@@ -162,7 +189,6 @@ function verifierErreur0()
         return false;
     }
 }
-
 
 function ajouterErreur($message)
 {
@@ -238,7 +264,6 @@ function creerDate($format = "Y-m-d H:i:s")
 {
     return date($format);
 }
-
 
 function traiterForm(...$tabGoal)
 {

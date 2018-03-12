@@ -1,5 +1,7 @@
 <?php
 // https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
+// https://davidwalsh.name/fetch
+
 ?>
 <section>
     <h3>UPLOAD</h3>
@@ -43,16 +45,20 @@ p {
 }
 #fileElem {
   display: none;
-}        
+}
     </style>
     <div id="drop-area">
         <form class="my-form">
             <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
             <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
             <label class="button" for="fileElem">Select some files</label>
+            <div class="feedbackAjax"></div>
+            <div class="feedback"></div>
         </form>
     </div>
     <script>
+let feedbackAjax = document.querySelector('.feedbackAjax');
+
 let dropArea = document.getElementById('drop-area');
 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
   dropArea.addEventListener(eventName, preventDefaults, false)
@@ -93,18 +99,21 @@ function handleFiles(files) {
 }
 
 function uploadFile(file) {
-  let url = 'ajax'
-  let formData = new FormData()
+  let url = 'ajax';
+  let formData = new FormData();
 
-  formData.append('file', file)
+  formData.append('--formGoal', 'Upload.ajax');
+  formData.append('uploadFile', file);
 
   fetch(url, {
-    mode: 'no-cors',  
+    mode: 'same-origin',
+    credentials: 'same-origin',
     method: 'POST',
     body: formData
   })
-  .then(response => { console.log(response) })
-  .catch(() => { console.log("UPLOAD ERROR") })
+  .then(response => { return response.text() })
+  .then(responseText => { feedbackAjax.innerHTML = responseText })
+  .catch(() => { feedbackAjax.innerHTML += '<div>UPLOAD ERROR</div>' })
 }
 
     </script>
