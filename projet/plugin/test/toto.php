@@ -53,7 +53,7 @@ CODEHTML;
 
 function faireTestFoot ()
 {
-    echo "TEST";
+    //echo "TEST";
 }
 
 function filtrerTest ($contenu="")
@@ -61,7 +61,7 @@ function filtrerTest ($contenu="")
     echo "==$contenu==";
 }
 
-ajouterAction("page.contenu", "10-test@function", "filtrerTest");
+//ajouterAction("page.contenu", "10-test@function", "filtrerTest");
 
 ajouterAction("theme.head", "100-test@function", "faireTestHeadTheme");
 ajouterAction("head", "100-test@function", "faireTestHead");

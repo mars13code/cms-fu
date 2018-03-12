@@ -1,4 +1,5 @@
 
+<?php bloc("bloc.section") ?>
            <section>
                 <h2>LISTE DES ANNONCES</h2>
                 <div class="ligne col3">
@@ -36,3 +37,4 @@ CODEHTML;
 ?>
                 </div>
             </section>
+<?php bloc("bloc.section") ?>
