@@ -43,6 +43,11 @@ réutilisation et évolution du code
 * Themes: modifier l'apparence visuelle suivant le projet
 * Actions et Filtres: interactions entre le CMS, le thème et les plugins
 
+* Le CMS prévoit une framework principal pour créer la réponse au navigateur
+* Dans ce framework, le thème doit pouvoir ajouter du code à différents endroits
+* Dans ce framework, les plugins doivent pouvoir ajouter leur code dans le CMS et aussi dans le thème
+
+
 ## Architecture: usage de MySQL
 
 Pour permettre une grande flexibilité du CMS

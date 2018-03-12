@@ -44,7 +44,11 @@ VALUES
 (null, 'Espace Membre', 'espace-membre', '2', 'admin', 'nav'),
 (null, 'Admin', 'admin', '3', 'admin', 'nav'),
 (null, 'Admin Newsletter', 'admin-newsletter', '4', 'admin', 'nav'),
-(null, 'Logout', 'logout', '5', 'admin', 'nav')
+(null, 'Logout', 'logout', '5', 'admin', 'nav'),
+/* NAV FOOTER */
+(null, 'mentions légales', 'mentions-legales', '1', 'footer', 'nav'),
+(null, 'crédits', 'credits', '2', 'footer', 'nav'),
+(null, 'admin', 'admin', '3', 'footer', 'nav')
 ;
 
 INSERT IGNORE INTO Framework 
