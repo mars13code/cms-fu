@@ -17,7 +17,7 @@ ajouterAction("theme.foot", "100-base@function", "faireToto");
 
 function filtrerContenu ($contenu="")
 {
-    echo "(AVANT)$contenu(APRES)";
+    echo "(".date("H:i:s").")$contenu(APRES)";
 }
 
 ajouterAction("page.contenu", "100-base@function", "filtrerContenu");
