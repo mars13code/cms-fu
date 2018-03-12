@@ -1,5 +1,5 @@
 
-<?php bloc("blablabla") ?>
+<?php bloc("bloc.blablabla") ?>
 <section>
     <h2><?php echo $titre ?></h2>
     <content>
@@ -16,4 +16,4 @@
         <?php filtrerInfo("page.contenu") ?>
     </content>
 </section>
-<?php bloc("blablabla") ?>
+<?php bloc("bloc.blablabla") ?>

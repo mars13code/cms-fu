@@ -21,5 +21,5 @@ function filtrerContenu ($contenu="")
 }
 
 ajouterAction("page.contenu", "100-base@function", "filtrerContenu");
-ajouterAction("blablabla", "100-base@function", "filtrerContenu");
+ajouterAction("bloc.blablabla", "100-base@function", "filtrerContenu");
 
