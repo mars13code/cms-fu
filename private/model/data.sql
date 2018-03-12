@@ -1,8 +1,7 @@
 USE `cmsFun`;
 
-/* 
+
 DELETE FROM Page;
-*/
 
 INSERT IGNORE INTO Page 
 ( urlPage, titre, contenu, template, category, dataType )
@@ -50,6 +49,8 @@ VALUES
 (null, 'crédits', 'credits', '2', 'footer', 'nav'),
 (null, 'admin', 'admin', '3', 'footer', 'nav')
 ;
+
+DELETE FROM Framework;
 
 INSERT IGNORE INTO Framework 
 (   id,      step,   sequence,         pool,           method,         param,        code, level, cle )

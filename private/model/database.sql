@@ -3,6 +3,12 @@ DEFAULT CHARACTER SET utf8mb4
 COLLATE utf8mb4_general_ci;
 USE `cmsFun`;
 
+/* ATTENTION: DETRUIT CERTAINES TABLES */
+
+DROP TABLE `Framework`;
+DROP TABLE `Page`;
+
+
 CREATE TABLE IF NOT EXISTS `Framework` (
   `id`                int(11)         NOT NULL AUTO_INCREMENT,
   `step`              int(11)         NOT NULL,
