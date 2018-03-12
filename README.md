@@ -43,4 +43,12 @@ Il est nécessaire d'effectuer plusieurs lectures successives avec MySQL
 * lecture de la page a afficher
 * lecture des contenus de la page (menu, blocs, etc...)
 
- 
+## Architecture MVC
+
+Le code suit au possible le Design Pattern MVC pour permettre une meilleure
+réutilisation et évolution du code
+
+* Plugins: étendre les possibilités
+* Themes: modifier l'apparence visuelle suivant le projet
+* Actions et Filtres: interactions entre le CMS, le thème et les plugins
+
