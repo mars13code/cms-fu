@@ -8,7 +8,7 @@ INSERT IGNORE INTO Page
 VALUES
 /* PAGES */
 ('index', 'accueil', 'contenu de la page accueil', 'index', '0', 'page'),
-('galerie', 'galerie', 'contenu de la page galerie', 'defaut', '0', 'page'),
+('galerie', 'galerie', 'contenu de la page galerie', 'galerie', '0', 'page'),
 ('contact', 'contact', 'contenu de la page contact', 'contact', '0', 'page'),
 ('annonce', 'espace-membre', 'contenu de la page espace-membre', 'annonce', '0', 'page'),
 ('mentions-legales', 'mentions-legales', 'contenu de la page mentions-legales', 'defaut', '0', 'page'),

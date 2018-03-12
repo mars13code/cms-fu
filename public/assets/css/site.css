@@ -113,7 +113,17 @@ form>* {
     padding: 1rem;
 }
 
+.gallery {
+    width:100%;
+    display: flex;
+    flex-wrap:wrap;
+}
+.gallery>* {
 
+    width:calc(100%/3);
+    height:calc(100%/3);
+    object-fit: cover;
+}
 /* ADMIN */
 
 

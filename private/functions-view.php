@@ -71,7 +71,7 @@ function afficherPage()
     }
     if (empty($tabLigne)) {
         $extension = lireOption("cms.extension");
-        if ($extension == "jpg") {
+        if (in_array($extension, [ "jpg", "jpeg", "png", "gif" ])) {
             afficherImage();
         } else {
             echo "ERREUR 404: $uriPage";
@@ -105,6 +105,7 @@ function afficherImage()
     header('Content-Type: image/png');
     $path     = lireOption("cms.path");
     $filename = lireOption("cms.filename");
+    $extension = lireOption("cms.extension");
     // http://php.net/manual/en/function.sscanf.php
     $name = $width = $height = 0;
     //list($name, $width, $height) = sscanf($filename, "%s,%d,%d");
@@ -114,22 +115,79 @@ function afficherImage()
     $height = min($height, 2000);
 
     $im = @imagecreatetruecolor($width, $height);
-    // http://php.net/manual/en/function.mt-rand.php
-    $red   = mt_rand(0, 255);
-    $green = mt_rand(0, 255);
-    $blue  = mt_rand(0, 255);
+    
+    // check if file exists in upload
+    // todo: ameliorer le chemin du dossier... 
+    $dossierUpload = $GLOBALS["dossierCMS"] . "/projet/upload";
+    $cheminFichier = "$dossierUpload/$name.$extension";
+    $imgSrc = null;
+    if (file_exists($cheminFichier)) {
+        if (in_array($extension, [ "jpg", "jpeg" ])) {
+            // http://php.net/manual/fr/function.imagecreatefromjpeg.php
+            $imgSrc = imagecreatefromjpeg($cheminFichier);
+        }
+        elseif (in_array($extension, [ "png" ])) {
+            // http://php.net/manual/fr/function.imagecreatefromjpeg.php
+            $imgSrc = imagecreatefrompng($cheminFichier);
+            imagealphablending($im, false);
+            imagesavealpha($im, true);        
+        }
+        elseif (in_array($extension, [ "gif" ])) {
+            // http://php.net/manual/fr/function.imagecreatefromjpeg.php
+            $imgSrc = imagecreatefromgif($cheminFichier);
+            imagealphablending($im, false);
+            imagesavealpha($im, true);        
+        }
+    }
+    if ($imgSrc) {
+        // http://php.net/manual/fr/function.imagesx.php
+        $widthSrc= imagesx($imgSrc);
+        $heightSrc= imagesy($imgSrc);
+        if ($widthSrc * $heightSrc > 0) {
+            // http://php.net/manual/fr/function.imagecopyresampled.php
+            $xSrc = 0;
+            $ySrc = 0;
+            $ratio = max($width/$widthSrc, $height/$heightSrc);
+            $xSrc = ($widthSrc - $width / $ratio) / 2;
+            $ySrc = ($heightSrc - $height / $ratio) / 2;
+            $heightSrc = $height / $ratio;
+            $widthSrc = $width / $ratio;
+            imagecopyresampled($im, $imgSrc,
+                0, 0, $xSrc, $ySrc,
+                $width, $height, $widthSrc, $heightSrc);
+        }
+    }
+    else {
+        // http://php.net/manual/fr/function.imagettftext.php
+        $font = __DIR__ . "/model/Roboto-Thin.ttf";
+        $text = "{$width}x{$height}";
+        $textLength = mb_strlen($text);
+        $fontSize = min(32, $height);
+        // http://php.net/manual/en/function.mt-rand.php
+        $red   = mt_rand(0, 255);
+        $green = mt_rand(0, 255);
+        $blue  = mt_rand(0, 255);
+    
+        $color1 = imagecolorallocate($im, $red, $green, $blue);
+        $color2 = imagecolorallocate($im, $green, $blue, $red);
+        // http://php.net/manual/en/function.imagefill.php
+        imagefill($im, 0, 0, $color1);
+        imagettftext($im, $fontSize, 0, round(0.5 * ($width - $textLength*$fontSize)), round(20 * $height / $fontSize), $color2, $font, $text);
+    }    
 
-    $color1 = imagecolorallocate($im, $red, $green, $blue);
-    $color2 = imagecolorallocate($im, $green, $blue, $red);
-    // http://php.net/manual/en/function.imagefill.php
-    imagefill($im, 0, 0, $color1);
-    // http://php.net/manual/fr/function.imagettftext.php
-    $font = __DIR__ . "/model/Roboto-Thin.ttf";
-    $text = "{$width}x{$height}";
-    $textLength = mb_strlen($text);
-    $fontSize = min(32, $height);
-    imagettftext($im, $fontSize, 0, round(0.5 * ($width - $textLength*$fontSize)), round(20 * $height / $fontSize), $color2, $font, $text);
-    imagepng($im);
+    // format de sortie    
+    if (in_array($extension, [ "jpg", "jpeg" ])) {
+        // http://php.net/manual/fr/function.imagecreatefromjpeg.php
+        imagejpeg($im);
+    }
+    elseif (in_array($extension, [ "png" ])) {
+        // http://php.net/manual/fr/function.imagecreatefromjpeg.php
+        imagepng($im);
+    }
+    elseif (in_array($extension, [ "gif" ])) {
+        // http://php.net/manual/fr/function.imagecreatefromjpeg.php
+        imagegif($im);
+    }
     imagedestroy($im);
 
 }
