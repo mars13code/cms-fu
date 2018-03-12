@@ -25,9 +25,9 @@ $dossierTheme = "../projet/theme";
 $dossierCMS   = dirname(__DIR__);
 
 // charger les déclarations de mes fonctions
-require_once __DIR__ . "/model-functions.php";
-require_once __DIR__ . "/view-functions.php";
-require_once __DIR__ . "/controller-functions.php";
+require_once __DIR__ . "/functions-model.php";
+require_once __DIR__ . "/functions-view.php";
+require_once __DIR__ . "/functions-controller.php";
 
 // variables globales
 // dossiers qui vont grouper les fichiers de traitement de formulaire

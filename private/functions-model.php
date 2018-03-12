@@ -60,7 +60,8 @@ function insererLigneUnique($nomTable, $tabInput, $nomColonne = "", $valeurColon
     if ($nomColonne != "") {
         $tabResult = trouverLigne($nomTable, $nomColonne, $valeurColonne);
         foreach ($tabResult as $tabLigne) {
-            ajouterErreur("($nomColonne) existe déjà");
+            $valeurColonne = htmlspecialchars($valeurColonne);
+            ajouterErreur("($nomColonne) '($valeurColonne) existe déjà");
             break;
         }
     }

@@ -25,7 +25,7 @@ if ($formGoal == "Upload.ajax") {
             "idUser"    => lireSession("id"),
             ];
         // todo: gérer les conflits avec fichier déjà existants    
-        insererLigne("Page",$tabInput);    
+        insererLigneUnique("Page",$tabInput, "urlPage", $uploadFile);    
     }
     afficherMessage("Le fichier $uploadFile est bien arrivé.");
 }

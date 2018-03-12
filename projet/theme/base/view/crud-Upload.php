@@ -3,7 +3,7 @@
 // https://davidwalsh.name/fetch
 
 ?>
-<section>
+<section class="admin-upload">
     <h3>UPLOAD</h3>
     <style>
 #drop-area {
@@ -27,10 +27,11 @@ p {
   margin-top: 10px;
 }
 #gallery img {
-  width: 150px;
+  width: 160px;
+  height:160px;
+  object-fit:cover;
   margin-bottom: 10px;
   margin-right: 10px;
-  vertical-align: middle;
 }
 .button {
   display: inline-block;
@@ -55,6 +56,7 @@ p {
             <div class="feedbackAjax"></div>
             <div class="feedback"></div>
         </form>
+        <div id="gallery"></div>
     </div>
     <script>
 let feedbackAjax = document.querySelector('.feedbackAjax');
@@ -94,8 +96,20 @@ function handleDrop(e) {
   handleFiles(files)
 }
 
+function previewFile(file) {
+  let reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onloadend = function() {
+    let img = document.createElement('img');
+    img.src = reader.result;
+    document.getElementById('gallery').appendChild(img);
+  }
+}
+
 function handleFiles(files) {
-  ([...files]).forEach(uploadFile)
+  files = [...files];
+  files.forEach(uploadFile);
+  files.forEach(previewFile);
 }
 
 function uploadFile(file) {
@@ -112,9 +126,15 @@ function uploadFile(file) {
     body: formData
   })
   .then(response => { return response.text() })
-  .then(responseText => { feedbackAjax.innerHTML = responseText })
+  .then(responseText => { 
+      let feedbackUpload = document.createElement('div');
+      feedbackUpload.innerHTML = responseText;
+      feedbackAjax.appendChild(feedbackUpload); 
+      
+  })
   .catch(() => { feedbackAjax.innerHTML += '<div>UPLOAD ERROR</div>' })
 }
+
 
     </script>
 </section>
