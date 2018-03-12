@@ -1,4 +1,4 @@
-# cms-fu
+# Cms-fu
 
 Construire un CMS en langage PHP avec des fonctions
 
