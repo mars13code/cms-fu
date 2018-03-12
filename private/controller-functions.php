@@ -26,6 +26,7 @@ function startTimer($msg = "")
         return $debugLog;
     }
 }
+
 function ajouterControllerDir($cheminController)
 {
     global $tabCheminController;

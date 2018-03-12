@@ -17,8 +17,6 @@ function bloc($id)
     }
 }
 
-
-
 function afficher($varGlobale, $defaut = "")
 {
     if (isset($GLOBALS[$varGlobale])) {
