@@ -21,7 +21,7 @@ Conseils:
 * prendre un hébergement avec accès SSH et https inclus
 * (...prix actuels autour de 5 euros/mois)
 
-## USAGE
+## Installation
 
 Ne pas oublier de changer les fichiers dans le dossier /public/
 * pour adapter les chemins vers le dossier racine du site
@@ -33,7 +33,7 @@ Et si vous utilisez un serveur web LAMP (avec Apache)
 
 * public/.htaccess
 
-## USAGE DE LA DATABASE MySQL
+## Architecture: usage de MySQL
 
 Pour permettre une grande flexibilité du CMS
 
