@@ -1,6 +1,23 @@
 <?php
 
-function afficherAction ($tag)
+
+function bloc($id)
+{
+    static $tabInfo = [];
+    if ($id != "") {
+        if ($tabInfo[$id] ?? 0) {
+            $result = ob_get_clean();
+            filtrerInfo($id, $result);
+            unset($tabInfo[$id]);
+        } else {
+            // http://php.net/manual/fr/function.uniqid.php
+            $tabInfo[$id] = uniqid("bloc.");
+            ob_start();
+        }
+    }
+}
+
+function afficherAction($tag)
 {
     echo ajouterAction($tag);
 }
@@ -14,14 +31,14 @@ function ajouterAction($tag, ...$tabParam)
         $valeurParam = $tabParam[1] ?? "";
         if ($cleParam != "") {
             if (false !== mb_stristr($cleParam, "@filter")) {
-                
+
                 ob_start();
                 if (!empty($tabInfo["$tag"])) {
                     ksort($tabInfo["$tag"], SORT_NATURAL);
-                    
+
                     $nbFiltre = 0;
                     foreach (($tabInfo["$tag"] ?? []) as $cleInfo => $valeurInfo) {
-            
+
                         if ((false !== mb_stristr($cleInfo, "@function"))
                             && is_callable($valeurInfo)) {
                             // la fonction peut faire echo ou return
@@ -30,20 +47,18 @@ function ajouterAction($tag, ...$tabParam)
                             ob_start();
                             echo $valeurInfo($valeurParam);
                             $valeurParam = ob_get_clean();
-                            
+
                             $nbFiltre++;
                         }
                     }
                 }
                 echo $valeurParam;
-                
+
                 $result = ob_get_clean();
-            }
-            elseif ($valeurParam !== null) {
+            } elseif ($valeurParam !== null) {
                 // modifier ou ajouter une nouvelle action
                 $tabInfo["$tag"]["$cleParam"] = $valeurParam;
-            }
-            elseif(isset($tabInfo["$tag"]["$cleParam"])) {
+            } elseif (isset($tabInfo["$tag"]["$cleParam"])) {
                 // enlever l'action
                 unset($tabInfo["$tag"]["$cleParam"]);
             }
@@ -54,11 +69,11 @@ function ajouterAction($tag, ...$tabParam)
         // http://php.net/manual/fr/function.ksort.php
         ob_start();
         if (!empty($tabInfo["$tag"])) {
-            
+
             ksort($tabInfo["$tag"], SORT_NATURAL);
-            
+
             foreach ($tabInfo["$tag"] as $cleInfo => $valeurInfo) {
-    
+
                 if ((false !== mb_stristr($cleInfo, "@function"))
                     && is_callable($valeurInfo)) {
                     // la fonction peut faire echo ou return
@@ -67,10 +82,10 @@ function ajouterAction($tag, ...$tabParam)
                 } else {
                     echo $valeurInfo;
                 }
-    
+
             }
         }
-        
+
         $result = ob_get_clean();
         trim($result);
         $result = "\n$result\n";
@@ -143,8 +158,7 @@ function installerTableSQL()
     }
 }
 
-
-function filtrerInfo ($cle, $defaut="")
+function filtrerInfo($cle, $defaut = "")
 {
     global $tabOption;
     $result = $tabOption[$cle] ?? $defaut;
@@ -287,12 +301,12 @@ function afficherPage()
         //print_r($tabResult);
         foreach ($tabResult as $tabLigne) {
             $tabLigne = array_map("htmlspecialchars", $tabLigne);
-            
-            foreach($tabLigne as $colonne => $colVal) {
+
+            foreach ($tabLigne as $colonne => $colVal) {
                 // memorise les infos de la page
                 ecrireOption("page.$colonne", $colVal);
             }
-            
+
             extract($tabLigne);
             $template ?? $template = "";
             $level ?? $level       = 0;
