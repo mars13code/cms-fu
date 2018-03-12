@@ -14,6 +14,7 @@ header("Access-Control-Allow-Origin: PUT, GET, POST, DELETE, OPTIONS");
 
 
 if ($formGoal == "Upload.ajax") {
+    
     $uploadFile = filtrerUpload("uploadFile");
     if (empty($tabErreur)) {
         $tabInput = [

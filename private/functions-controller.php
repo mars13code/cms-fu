@@ -4,8 +4,10 @@ function filtrerUpload($inputName)
 {
     $result = "";
 
+    // todo: ameliorer le chemin du dossier... 
     $dossierUpload = $GLOBALS["dossierCMS"] . "/projet/upload";
-
+    if (!is_dir($dossierUpload)) mkdir($dossierUpload);
+    
     if (isset($_FILES["$inputName"])
         && ($_FILES["$inputName"]["error"] == 0)) {
         extract($_FILES["$inputName"]);
@@ -13,10 +15,13 @@ function filtrerUpload($inputName)
         $extension = pathinfo($name, PATHINFO_EXTENSION);
         $extension = strtolower($extension);
 
+        // securite: filtre les extensions possibles
+        // (ne jamais autoriser php...)
         // http://php.net/manual/fr/function.in-array.php
         if (in_array($extension, ["jpg", "jpeg", "png", "gif", "mp4", "pdf", "csv", "txt", "js", "css", "html"])) {
             $filename = pathinfo($name, PATHINFO_FILENAME);
 
+            // securite: enleve les caracteres speciaux et transforme en minuscules
             $filename = preg_replace("/[^a-zA-Z0-9-]/", "", $filename);
             $filename = strtolower($filename);
 
