@@ -15,5 +15,17 @@ header("Access-Control-Allow-Origin: PUT, GET, POST, DELETE, OPTIONS");
 
 if ($formGoal == "Upload.ajax") {
     $uploadFile = filtrerUpload("uploadFile");
+    if (empty($tabErreur)) {
+        $tabInput = [
+            "urlPage"   => "$uploadFile",
+            "dataType"  => "upload",
+            "titre"     => "$uploadFile",
+            "date"      => creerDate(),
+            "ip"        => filtrerIp(),
+            "idUser"    => lireSession("id"),
+            ];
+        // todo: gérer les conflits avec fichier déjà existants    
+        insererLigne("Page",$tabInput);    
+    }
     afficherMessage("Le fichier $uploadFile est bien arrivé.");
 }
