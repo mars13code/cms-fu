@@ -11,15 +11,25 @@ function filtrerUpload($inputName)
     
     if (isset($_FILES["$inputName"])
         && ($_FILES["$inputName"]["error"] == 0)) {
+
         extract($_FILES["$inputName"]);
 
         $extension = pathinfo($name, PATHINFO_EXTENSION);
         $extension = strtolower($extension);
+        if (!in_array($extension, ["jpg", "jpeg", "png", "gif", "mp4", "pdf", "csv", "txt", "js", "css", "html"])) {
+            ajouterErreur("(extension) $extension est interdit");
+        }
+        
+        if ($size > 10 * 1024 * 1024) {
+            ajouterErreur("(taille) $size est trop grand");
+        }
 
-        // securite: filtre les extensions possibles
-        // (ne jamais autoriser php...)
-        // http://php.net/manual/fr/function.in-array.php
-        if (in_array($extension, ["jpg", "jpeg", "png", "gif", "mp4", "pdf", "csv", "txt", "js", "css", "html"])) {
+        // peut être bloqué par une autre erreur du formulaire que l'upload
+        if (empty($tabErreur)) {
+    
+            // securite: filtre les extensions possibles
+            // (ne jamais autoriser php...)
+            // http://php.net/manual/fr/function.in-array.php
             $filename = pathinfo($name, PATHINFO_FILENAME);
 
             // securite: enleve les caracteres speciaux et transforme en minuscules
@@ -29,10 +39,11 @@ function filtrerUpload($inputName)
 
             //file_put_contents("$dossierUpload/toto.log", json_encode($_FILES["$inputName"]));
             move_uploaded_file($tmp_name, "$dossierUpload/$filename.$extension");
+
             $result = "$filename.$extension";
-        } else {
-            ajouterErreur("(extension) $extension est interdit");
+            
         }
+                
     } else {
         ajouterErreur("(echec) une erreur s'est produite durant le transfert. Un nouvel essai?");
     }
