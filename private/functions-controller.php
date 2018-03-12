@@ -6,6 +6,7 @@ function filtrerUpload($inputName)
 
     // todo: ameliorer le chemin du dossier... 
     $dossierUpload = $GLOBALS["dossierCMS"] . "/projet/upload";
+    // http://php.net/manual/fr/function.mkdir.php
     if (!is_dir($dossierUpload)) mkdir($dossierUpload);
     
     if (isset($_FILES["$inputName"])
@@ -22,6 +23,7 @@ function filtrerUpload($inputName)
             $filename = pathinfo($name, PATHINFO_FILENAME);
 
             // securite: enleve les caracteres speciaux et transforme en minuscules
+            // http://php.net/manual/fr/function.preg-replace.php
             $filename = preg_replace("/[^a-zA-Z0-9-]/", "", $filename);
             $filename = strtolower($filename);
 
