@@ -213,3 +213,18 @@ CODESQL;
 
     return $objetPDOStatement;
 }
+
+function tracerVisit()
+{
+    // http://php.net/manual/en/function.json-encode.php
+    // http://php.net/manual/en/function.session-id.php
+    $tabInput = [
+        "urlPage" => $_SERVER["REQUEST_URI"],
+        "date"    => creerDate(),
+        "request" => json_encode($_REQUEST, JSON_PRETTY_PRINT),
+        "meta"    => session_id(),
+        "ip"      => filtrerIp(),
+    ];
+
+    insererLigne("Visit", $tabInput);
+}
