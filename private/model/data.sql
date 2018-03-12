@@ -4,24 +4,25 @@ USE `cmsFun`;
 DELETE FROM Page;
 
 INSERT IGNORE INTO Page 
-( urlPage, titre, contenu, template, category, dataType )
+( urlPage, titre, contenu, template, level, dataType )
 VALUES
 /* PAGES */
-('index', 'accueil', 'contenu de la page accueil', 'index', '', 'page'),
-('galerie', 'galerie', 'contenu de la page galerie', 'defaut', '', 'page'),
-('contact', 'contact', 'contenu de la page contact', 'contact', '', 'page'),
-('annonce', 'espace-membre', 'contenu de la page espace-membre', 'annonce', '', 'page'),
-('mentions-legales', 'mentions-legales', 'contenu de la page mentions-legales', 'defaut', '', 'page'),
-('credits', 'credits', 'contenu de la page credits', 'defaut', '', 'page'),
+('index', 'accueil', 'contenu de la page accueil', 'index', '0', 'page'),
+('galerie', 'galerie', 'contenu de la page galerie', 'defaut', '0', 'page'),
+('contact', 'contact', 'contenu de la page contact', 'contact', '0', 'page'),
+('annonce', 'espace-membre', 'contenu de la page espace-membre', 'annonce', '0', 'page'),
+('mentions-legales', 'mentions-legales', 'contenu de la page mentions-legales', 'defaut', '0', 'page'),
+('credits', 'credits', 'contenu de la page credits', 'defaut', '0', 'page'),
 /* AJAX */
-('ajax', 'ajax', 'contenu de la page ajax', 'ajax', '', 'page'),
+('ajax', 'ajax', 'contenu de la page ajax', 'ajax', '0', 'page'),
 /* ADMIN */
-('inscription', 'inscription', 'contenu de la page inscription', 'inscription', '', 'page'),
-('login', 'login', 'contenu de la page login', 'login', '', 'page'),
-('logout', 'logout', 'contenu de la page logout', 'logout', '', 'page'),
-('espace-membre', 'espace-membre', 'contenu de la page espace-membre', 'espace-membre', '', 'page'),
-('admin', 'admin-user', 'contenu de la page admin-user', 'admin-user', '', 'page'),
-('admin-newsletter', 'admin-newsletter', 'contenu de la page admin-newsletter', 'admin-newsletter', '', 'page')
+('inscription', 'inscription', 'contenu de la page inscription', 'inscription', '0', 'page'),
+('login', 'login', 'contenu de la page login', 'login', '0', 'page'),
+('logout', 'logout', 'contenu de la page logout', 'logout', '1', 'page'),
+('espace-membre', 'espace-membre', 'contenu de la page espace-membre', 'espace-membre', '1', 'page'),
+('admin', 'admin', 'contenu de la page admin', 'admin', '8', 'page'),
+('admin-user', 'admin-user', 'contenu de la page admin-user', 'admin-user', '8', 'page'),
+('admin-newsletter', 'admin-newsletter', 'contenu de la page admin-newsletter', 'admin-newsletter', '8', 'page')
 ;
 
 INSERT IGNORE INTO Page 
