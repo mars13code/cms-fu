@@ -56,6 +56,13 @@ function faireTestFoot ()
     echo "TEST";
 }
 
+function filtrerTest ($contenu="")
+{
+    echo "==$contenu==";
+}
+
+ajouterAction("page.contenu", "10-test@function", "filtrerTest");
+
 ajouterAction("theme.head", "100-test@function", "faireTestHeadTheme");
 ajouterAction("head", "100-test@function", "faireTestHead");
 ajouterAction("foot", "100-test", $codeFoot);

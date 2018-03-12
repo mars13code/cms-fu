@@ -10,36 +10,67 @@ function ajouterAction($tag, ...$tabParam)
     static $tabInfo = [];
     $result         = "";
     if (!empty($tabParam)) {
-        $cle    = $tabParam[0] ?? "";
-        $valeur = $tabParam[1] ?? "";
-        if ($cle != "") {
-            if ($valeur !== null) {
-                // modifier ou ajouter une nouvelle action
-                $tabInfo["$tag"]["$cle"] = $valeur;
+        $cleParam    = $tabParam[0] ?? "";
+        $valeurParam = $tabParam[1] ?? "";
+        if ($cleParam != "") {
+            if (false !== mb_stristr($cleParam, "@filter")) {
+                
+                ob_start();
+                if (!empty($tabInfo["$tag"])) {
+                    ksort($tabInfo["$tag"], SORT_NATURAL);
+                    
+                    $nbFiltre = 0;
+                    foreach (($tabInfo["$tag"] ?? []) as $cleInfo => $valeurInfo) {
+            
+                        if ((false !== mb_stristr($cleInfo, "@function"))
+                            && is_callable($valeurInfo)) {
+                            // la fonction peut faire echo ou return
+                            // les 2 manières vont produire un contenu...
+                            // pour accumuler les filtres
+                            ob_start();
+                            echo $valeurInfo($valeurParam);
+                            $valeurParam = ob_get_clean();
+                            
+                            $nbFiltre++;
+                        }
+                    }
+                }
+                echo $valeurParam;
+                
+                $result = ob_get_clean();
             }
-            elseif(isset($tabInfo["$tag"]["$cle"])) {
+            elseif ($valeurParam !== null) {
+                // modifier ou ajouter une nouvelle action
+                $tabInfo["$tag"]["$cleParam"] = $valeurParam;
+            }
+            elseif(isset($tabInfo["$tag"]["$cleParam"])) {
                 // enlever l'action
-                unset($tabInfo["$tag"]["$cle"]);
+                unset($tabInfo["$tag"]["$cleParam"]);
             }
         }
 
     } elseif (isset($tabInfo["$tag"])) {
         // trier le tableau
         // http://php.net/manual/fr/function.ksort.php
-        ksort($tabInfo, SORT_NATURAL);
         ob_start();
-        foreach ($tabInfo["$tag"] as $cle => $valeur) {
-
-            if ((false !== mb_stristr($cle, "@function"))
-                && is_callable($valeur)) {
-                // la fonction peut faire echo ou return
-                // les 2 manières vont produire un contenu...
-                echo $valeur();
-            } else {
-                echo $valeur;
+        if (!empty($tabInfo["$tag"])) {
+            
+            ksort($tabInfo["$tag"], SORT_NATURAL);
+            
+            foreach ($tabInfo["$tag"] as $cleInfo => $valeurInfo) {
+    
+                if ((false !== mb_stristr($cleInfo, "@function"))
+                    && is_callable($valeurInfo)) {
+                    // la fonction peut faire echo ou return
+                    // les 2 manières vont produire un contenu...
+                    echo $valeurInfo();
+                } else {
+                    echo $valeurInfo;
+                }
+    
             }
-
         }
+        
         $result = ob_get_clean();
         trim($result);
         $result = "\n$result\n";
@@ -110,6 +141,14 @@ function installerTableSQL()
         }
 
     }
+}
+
+
+function filtrerInfo ($cle, $defaut="")
+{
+    global $tabOption;
+    $result = $tabOption[$cle] ?? $defaut;
+    echo ajouterAction($cle, "@filter", $result);
 }
 
 function afficherOption($cle, $defaut = "")
@@ -248,11 +287,19 @@ function afficherPage()
         //print_r($tabResult);
         foreach ($tabResult as $tabLigne) {
             $tabLigne = array_map("htmlspecialchars", $tabLigne);
+            
+            foreach($tabLigne as $colonne => $colVal) {
+                // memorise les infos de la page
+                ecrireOption("page.$colonne", $colVal);
+            }
+            
             extract($tabLigne);
             $template ?? $template = "";
             $level ?? $level       = 0;
             $levelOK               = true;
             if ($level > 0) {
+                // verifier si la page est protegee
+                // et si le visiteur a le niveau suffisant
                 $levelUser = lireSession("level");
                 if ($level > $levelUser) {
                     $levelOK = false;

@@ -14,3 +14,10 @@ function faireToto ()
 
 ajouterAction("theme.foot", "100-base@function", "faireToto");
 //ajouterAction("theme.foot", "100-base@function", null);
+
+function filtrerContenu ($contenu="")
+{
+    echo "(AVANT)$contenu(APRES)";
+}
+
+ajouterAction("page.contenu", "100-base@function", "filtrerContenu");
