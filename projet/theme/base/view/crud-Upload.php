@@ -103,7 +103,7 @@ function uploadFile(file) {
     method: 'POST',
     body: formData
   })
-  .then(() => { console.log("UPLOAD DONE") })
+  .then(response => { console.log(response) })
   .catch(() => { console.log("UPLOAD ERROR") })
 }
 
