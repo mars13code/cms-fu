@@ -33,14 +33,16 @@ CREATE TABLE IF NOT EXISTS `User` (
 
 CREATE TABLE IF NOT EXISTS `Page` (
   `id`          int(11)         NOT NULL AUTO_INCREMENT,
-  `categorie`   varchar(190)    NOT NULL,
+  `dataType`    varchar(190)    NOT NULL,
+  `category`    varchar(190)    NOT NULL,
   `titre`       varchar(190)    NOT NULL,
-  `urlPage`     varchar(190)    NOT NULL,
+  `urlPage`     varchar(190),
   `contenu`     text            NOT NULL,
   `urlImage`    varchar(190)    NOT NULL,
   `template`    varchar(190)    NOT NULL,
   `level`       int(11)         NOT NULL,
   `date`        datetime        NOT NULL,
+  `priority`       int(11)         NOT NULL,
   `description` varchar(190)    NOT NULL,
   `idUser`      int(11)         NOT NULL,
   `ip`          varchar(190)    NOT NULL,

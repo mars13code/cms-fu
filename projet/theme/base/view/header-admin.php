@@ -12,15 +12,7 @@
             
         <header>
             <h1>SITE CMS</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.php">accueil</a></li>
-                    <li><a href="espace-membre.php">espace membre</a></li>
-                    <li><a href="admin-user.php">admin user</a></li>
-                    <li><a href="admin-newsletter.php">admin newsletter</a></li>
-                    <li><a href="logout.php">logout</a></li>
-                </ul>
-            </nav>
+            <?php afficherMenu("admin", "<nav><ul>", "</ul></nav>") ?>
         </header>
 
         <main>

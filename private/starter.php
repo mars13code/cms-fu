@@ -25,7 +25,9 @@ $passSQL    ?? $passSQL = "";
 $dossierTheme = "../projet/theme";
 
 // charger les déclarations de mes fonctions
-require_once(__DIR__ . "/functions.php");
+require_once(__DIR__ . "/model-functions.php");
+require_once(__DIR__ . "/view-functions.php");
+require_once(__DIR__ . "/controller-functions.php");
 
 // variables globales
 // dossiers qui vont grouper les fichiers de traitement de formulaire
