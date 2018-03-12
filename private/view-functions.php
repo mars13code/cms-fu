@@ -123,8 +123,12 @@ function afficherImage()
     $color2 = imagecolorallocate($im, $green, $blue, $red);
     // http://php.net/manual/en/function.imagefill.php
     imagefill($im, 0, 0, $color1);
-
-    imagestring($im, 1, 5, 5, "$width|$height", $color2);
+    // http://php.net/manual/fr/function.imagettftext.php
+    $font = __DIR__ . "/model/Roboto-Thin.ttf";
+    $text = "{$width}x{$height}";
+    $textLength = mb_strlen($text);
+    $fontSize = min(32, $height);
+    imagettftext($im, $fontSize, 0, round(0.5 * ($width - $textLength*$fontSize)), round(20 * $height / $fontSize), $color2, $font, $text);
     imagepng($im);
     imagedestroy($im);
 

@@ -57,10 +57,11 @@ INSERT IGNORE INTO Framework
 VALUES
 (   '1',     '1000',   'init',         'framework',    'initCMS',      '',           'start framework', '0', ''),
 (   '2',     '2000',   'option',       '',             '',             'cms.theme',  'base', '0', 'framework'),
-(   '3',     '2100',   'option',       '',             '',             'test',       'hello', '0', 'framework'),
-(   '4',     '3000',   'theme',        'base',         'index',        '',           'load theme', '0', ''),
-(   '5',     '4000',   'plugin',       'test',         'toto',         '',           'load plugin', '0', ''),
-(   '6',     '5000',   'controller',   'framework',    'traiterForm',  '',           'controller: process form', '0', ''),
-(   '7',     '6000',   'view',         'framework',    'afficherPage', '',           'view: build response', '0', ''),
-(   '8',     '9000',   'end',          'framework',    'endCMS',       '',           'end framework', '0', '')
+(   '3',     '2100',   'option',       '',             '',             'page.logo',  'assets/img/180x60-logo.jpg', '0', 'framework'),
+(   '4',     '2100',   'option',       '',             '',             'test',       'hello', '0', 'framework'),
+(   '5',     '3000',   'theme',        'base',         'index',        '',           'load theme', '0', ''),
+(   '6',     '4000',   'plugin',       'test',         'toto',         '',           'load plugin', '0', ''),
+(   '7',     '5000',   'controller',   'framework',    'traiterForm',  '',           'controller: process form', '0', ''),
+(   '8',     '6000',   'view',         'framework',    'afficherPage', '',           'view: build response', '0', ''),
+(   '9',     '9000',   'end',          'framework',    'endCMS',       '',           'end framework', '0', '')
 ;

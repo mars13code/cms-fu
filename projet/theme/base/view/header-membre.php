@@ -2,16 +2,21 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>CRUD</title>
+        <title><?php filtrerInfo("page.titre") ?> / <?php filtrerInfo("cms.title") ?></title>
+        
+        <link rel="icon" type="image/jpeg" href="assets/img/256x256-logo.jpg" />
+        
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/site.css" type="text/css">
-        <style>
-        </style>
+        
+        <?php afficherAction("theme.head") ?>
+
     </head>
     <body>
         <div class="page">
             
         <header>
-            <h1>SITE CMS</h1>
+            <h1><img src="<?php filtrerInfo("page.logo") ?>" alt="<?php filtrerInfo("page.titre") ?>"></h1>
             <?php afficherMenu("membre", "<nav><ul>", "</ul></nav>") ?>
         </header>
 
