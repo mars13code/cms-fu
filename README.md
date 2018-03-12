@@ -8,8 +8,23 @@ Construire un CMS en langage PHP avec des fonctions
 * nombre variable de paramètres pour les fonctions
 * ...et aussi SQL... sans ORM!
 
+## Vous venez de démarrer dans le monde web ?
 
-## Prérequis
+* Commencez à faire un site avec WordPress
+* choisisez un bon thème (page builder)
+* ajouter des extensions
+* Créez un petit site pour comprendre un site internet
+
+Ensuite allez plus loin en codant:
+
+* apprenez les bases du code pour le web 
+* HTML
+* CSS
+* JS
+* PHP
+* SQL
+
+## Prérequis pour installer votre projet CMS
 
 La plupart des hébergements web mutualisés proposent un serveur LAMP
 
