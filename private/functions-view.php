@@ -40,7 +40,7 @@ CODEHTML;
 
     echo
         <<<CODEHTML
-
+<table>
     <thead>
     <tr>
 $htmlHead
@@ -51,6 +51,7 @@ $htmlHead
     <tbody>
 $htmlLigne
     </tbody>
+</table>
 
 CODEHTML;
 

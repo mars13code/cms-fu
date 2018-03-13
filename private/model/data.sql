@@ -45,7 +45,7 @@ VALUES
 (null, 'Admin Annonce', 'admin-annonce.html', '4', 'admin', 'nav'),
 (null, 'Admin Newsletter', 'admin-newsletter.html', '5', 'admin', 'nav'),
 (null, 'Admin User', 'admin-user.html', '6', 'admin', 'nav'),
-(null, 'Logout', 'logout.html', '5', 'admin', 'nav'),
+(null, 'Logout', 'logout.html', '7', 'admin', 'nav'),
 /* NAV FOOTER */
 (null, 'mentions légales', 'mentions-legales.html', '1', 'footer', 'nav'),
 (null, 'crédits', 'credits.html', '2', 'footer', 'nav'),

@@ -58,9 +58,6 @@ foreach ($tabResult as $tabLigne):
             <section>
                 <h2>READ</h2>
                 <div class="feedback"><?php traiterForm("$nomTable.delete", "$nomTable.update"); ?></div>
-                <table>
-                    <tbody>
-
 <?php
 
 $tabResult = trouverLigne("$nomTable", "", "", "ORDER BY date DESC");
@@ -74,5 +71,4 @@ $tabColShow = [
 
 afficherTable($nomTable, $tabResult, $tabColShow)
 ?>
-                </table>
             </section>
