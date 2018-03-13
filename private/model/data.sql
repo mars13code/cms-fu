@@ -60,6 +60,7 @@ VALUES
 (   '1000',   'init',         'framework',    'initCMS',      '',           'start framework', '0', ''),
 (   '2000',   'option',       '',             '',             'cms.theme',  'base', '0', 'framework'),
 (   '2010',   'option',       '',             '',             'cms.login',  'login.html', '0', 'framework'),
+(   '2010',   'option',       '',             '',             'cms.title',  'CMS-FU', '0', 'framework'),
 (   '2100',   'option',       '',             '',             'page.logo',  'assets/img/180x60-logo.jpg', '0', 'framework'),
 (   '2100',   'option',       '',             '',             'test',       'hello', '0', 'framework'),
 (   '3000',   'theme',        'base',         'index',        '',           'load theme', '0', ''),
