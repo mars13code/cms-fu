@@ -68,27 +68,8 @@ foreach ($tabResult as $tabLigne):
 
 $idUser    = lireSession("id");
 $tabResult = trouverLigne("$nomTable", "idUser", "$idUser", "ORDER BY date DESC");
-foreach ($tabResult as $tabLigne) {
-    $tabLigne = array_map("htmlspecialchars", $tabLigne);
-    extract($tabLigne);
-    echo
-        <<<CODEHTML
-
-    <tr>
-        <td>$id</td>
-        <td>$titre</td>
-        <td>$prix</td>
-        <td>$description</td>
-        <td>$categorie</td>
-        <td>$urlImage</td>
-        <td>$date</td>
-        <td>$ip</td>
-        <td><a href="?section=update&id=$id">modifier</a></td>
-        <td><a href="?--formGoal=$nomTable.delete&id=$id">supprimer</a></td>
-    </tr>
-
-CODEHTML;
-}
+$tabColShow = [];
+afficherTable($nomTable, $tabResult, $tabColShow);
 
 ?>
                     </tbody>

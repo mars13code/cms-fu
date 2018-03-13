@@ -1,5 +1,60 @@
 <?php
 
+function afficherTable($nomTable, $tabResult, $tabColShow=[])
+{
+    $htmlHead = "";
+    $htmlLigne = "";
+    foreach ($tabResult as $index => $tabLigne) {
+        $id = $tabLigne["id"];
+        $tabLigne = array_map("htmlspecialchars", $tabLigne);
+        //extract($tabLigne);
+        $htmlLigne .= "<tr>";
+        if (!empty($tabColShow)) {
+            foreach ($tabColShow as $colonne => $colShow) {
+                if ($colValue = $tabLigne[$colonne] ?? false) {
+                    if ($index == 0) {
+                        $htmlHead .= "<td>$colShow</td>";
+                    }
+                    $htmlLigne .= "<td>$colValue</td>";
+                }
+            }
+        } else {
+            foreach ($tabLigne as $colonne => $colValue) {
+                if ($index == 0) {
+                    $htmlHead .= "<td>$colonne</td>";
+                }
+                $htmlLigne .= "<td>$colValue</td>";
+            }
+        }
+        
+        $htmlLigne .=
+            <<<CODEHTML
+
+        <td><a href="?section=update&id=$id">modifier</a></td>
+        <td><a href="?--formGoal=$nomTable.delete&id=$id">supprimer</a></td>
+    </tr>
+
+CODEHTML;
+
+    }
+
+    echo
+        <<<CODEHTML
+
+    <thead>
+    <tr>
+$htmlHead
+    <td></td>
+    <td></td>
+    </tr>
+    <thead>
+    <tbody>
+$htmlLigne
+    </tbody>
+
+CODEHTML;
+
+}
 
 function bloc($id)
 {

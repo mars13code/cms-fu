@@ -22,7 +22,9 @@ VALUES
 ('espace-membre', 'espace-membre', 'contenu de la page espace-membre', 'espace-membre', '1', 'page'),
 ('admin', 'admin', 'contenu de la page admin', 'admin', '8', 'page'),
 ('admin-user', 'admin-user', 'contenu de la page admin-user', 'admin-user', '8', 'page'),
-('admin-newsletter', 'admin-newsletter', 'contenu de la page admin-newsletter', 'admin-newsletter', '8', 'page')
+('admin-annonce', 'admin-annonce', 'contenu de la page admin-annonce', 'admin-annonce', '8', 'page'),
+('admin-newsletter', 'admin-newsletter', 'contenu de la page admin-newsletter', 'admin-newsletter', '8', 'page'),
+('admin-user', 'admin-user', 'contenu de la page admin-user', 'admin-user', '8', 'page')
 ;
 
 INSERT IGNORE INTO Page 
@@ -33,14 +35,16 @@ VALUES
 (null, 'Contact', 'contact.html', '3', 'principal', 'nav'),
 (null, 'Inscription', 'inscription.html', '4', 'principal', 'nav'),
 (null, 'Espace Membre', 'espace-membre.html', '5', 'principal', 'nav'),
-/* NAV ADMIN */
+/* NAV MEMBRE */
 (null, 'Contact', 'contact.html', '2', 'membre', 'nav'),
 (null, 'Espace Membre', 'espace-membre.html', '3', 'membre', 'nav'),
 (null, 'Logout', 'logout.html', '4', 'membre', 'nav'),
 /* NAV ADMIN */
 (null, 'Espace Membre', 'espace-membre.html', '2', 'admin', 'nav'),
 (null, 'Admin', 'admin.html', '3', 'admin', 'nav'),
-(null, 'Admin Newsletter', 'admin-newsletter.html', '4', 'admin', 'nav'),
+(null, 'Admin Annonce', 'admin-annonce.html', '4', 'admin', 'nav'),
+(null, 'Admin Newsletter', 'admin-newsletter.html', '5', 'admin', 'nav'),
+(null, 'Admin User', 'admin-user.html', '6', 'admin', 'nav'),
 (null, 'Logout', 'logout.html', '5', 'admin', 'nav'),
 /* NAV FOOTER */
 (null, 'mentions légales', 'mentions-legales.html', '1', 'footer', 'nav'),
@@ -55,7 +59,7 @@ INSERT IGNORE INTO Framework
 VALUES
 (   '1000',   'init',         'framework',    'initCMS',      '',           'start framework', '0', ''),
 (   '2000',   'option',       '',             '',             'cms.theme',  'base', '0', 'framework'),
-(   '2001',   'option',       '',             '',             'cms.login',  'login.html', '0', 'framework'),
+(   '2010',   'option',       '',             '',             'cms.login',  'login.html', '0', 'framework'),
 (   '2100',   'option',       '',             '',             'page.logo',  'assets/img/180x60-logo.jpg', '0', 'framework'),
 (   '2100',   'option',       '',             '',             'test',       'hello', '0', 'framework'),
 (   '3000',   'theme',        'base',         'index',        '',           'load theme', '0', ''),
