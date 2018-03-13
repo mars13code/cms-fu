@@ -51,15 +51,16 @@ VALUES
 DELETE FROM Framework;
 
 INSERT IGNORE INTO Framework 
-(   id,      step,   sequence,         pool,           method,         param,        code, level, cle )
+(   step,   sequence,         pool,           method,         param,        code, level, cle )
 VALUES
-(   '1',     '1000',   'init',         'framework',    'initCMS',      '',           'start framework', '0', ''),
-(   '2',     '2000',   'option',       '',             '',             'cms.theme',  'base', '0', 'framework'),
-(   '3',     '2100',   'option',       '',             '',             'page.logo',  'assets/img/180x60-logo.jpg', '0', 'framework'),
-(   '4',     '2100',   'option',       '',             '',             'test',       'hello', '0', 'framework'),
-(   '5',     '3000',   'theme',        'base',         'index',        '',           'load theme', '0', ''),
-(   '6',     '4000',   'plugin',       'test',         'toto',         '',           'load plugin', '0', ''),
-(   '7',     '5000',   'controller',   'framework',    'traiterForm',  '',           'controller: process form', '0', ''),
-(   '8',     '6000',   'view',         'framework',    'afficherPage', '',           'view: build response', '0', ''),
-(   '9',     '9000',   'end',          'framework',    'endCMS',       '',           'end framework', '0', '')
+(   '1000',   'init',         'framework',    'initCMS',      '',           'start framework', '0', ''),
+(   '2000',   'option',       '',             '',             'cms.theme',  'base', '0', 'framework'),
+(   '2001',   'option',       '',             '',             'cms.login',  'login.html', '0', 'framework'),
+(   '2100',   'option',       '',             '',             'page.logo',  'assets/img/180x60-logo.jpg', '0', 'framework'),
+(   '2100',   'option',       '',             '',             'test',       'hello', '0', 'framework'),
+(   '3000',   'theme',        'base',         'index',        '',           'load theme', '0', ''),
+(   '4000',   'plugin',       'test',         'toto',         '',           'load plugin', '0', ''),
+(   '5000',   'controller',   'framework',    'traiterForm',  '',           'controller: process form', '0', ''),
+(   '6000',   'view',         'framework',    'afficherPage', '',           'view: build response', '0', ''),
+(   '9000',   'end',          'framework',    'endCMS',       '',           'end framework', '0', '')
 ;

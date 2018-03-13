@@ -66,6 +66,12 @@ function afficherPage()
                 }
 
             }
+            else {
+                $loginURL = filtrerInfo("cms.login", "", false);
+                if($loginURL != "") {
+                    header("Location: $loginURL");
+                }
+            }
         }
 
     }
@@ -203,11 +209,14 @@ function afficherMessage($message)
 }
 
 
-function filtrerInfo($cle, $defaut = "")
+function filtrerInfo($cle, $defaut = "", $echo = true)
 {
     global $tabOption;
     $result = $tabOption[$cle] ?? $defaut;
-    echo ajouterAction($cle, "@filter", $result);
+    if ($echo)
+        echo ajouterAction($cle, "@filter", $result);
+    else
+        return ajouterAction($cle, "@filter", $result);
 }
 
 function afficherOption($cle, $defaut = "")

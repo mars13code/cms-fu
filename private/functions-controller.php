@@ -16,7 +16,7 @@ function filtrerUpload($inputName)
 
         $extension = pathinfo($name, PATHINFO_EXTENSION);
         $extension = strtolower($extension);
-        if (!in_array($extension, ["jpg", "jpeg", "png", "gif", "mp4", "pdf", "csv", "txt", "js", "css", "html"])) {
+        if (!in_array($extension, [ "jpg", "jpeg", "png", "gif", "mp4", "pdf", "csv", "txt", "md", "js", "css", "html", "ttf", "svg" ])) {
             ajouterErreur("(extension) $extension est interdit");
         }
         
