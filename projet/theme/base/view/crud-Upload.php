@@ -1,9 +1,9 @@
 <?php
 // https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
 // https://davidwalsh.name/fetch
-
+// https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications
 ?>
-<section class="admin-upload">
+<section class="crud-upload-create">
     <h3>UPLOAD</h3>
     <style>
 #drop-area {
@@ -50,8 +50,8 @@ p {
     </style>
     <div id="drop-area">
         <form class="my-form">
-            <p>Upload multiple files with the file dialog or by dragging and dropping images onto the dashed region</p>
-            <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+            <p>Transférez des fichiers en cliquant sur le bouton ou bien en glisser-déposer</p>
+            <input type="file" id="fileElem" multiple accept="image/*">
             <label class="button" for="fileElem">Select some files</label>
             <div class="feedbackAjax"></div>
             <div class="feedback"></div>
@@ -59,82 +59,114 @@ p {
         <div id="gallery"></div>
     </div>
     <script>
-let feedbackAjax = document.querySelector('.feedbackAjax');
+let feedbackAjax    = document.querySelector('.feedbackAjax');
+let dropArea        = document.getElementById('drop-area');
+var inputElement    = document.querySelector("#fileElem");
+inputElement.addEventListener("change", handleFiles0, false);
+function handleFiles0() {
+    var fileList = this.files; /* now you can work with the file list */
+    handleFiles(fileList);
+}
 
-let dropArea = document.getElementById('drop-area');
 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-  dropArea.addEventListener(eventName, preventDefaults, false)
+    dropArea.addEventListener(eventName, preventDefaults, false)
 })
 
 function preventDefaults (e) {
-  e.preventDefault()
-  e.stopPropagation()
+    e.preventDefault()
+    e.stopPropagation()
 }
 
 ;['dragenter', 'dragover'].forEach(eventName => {
-  dropArea.addEventListener(eventName, highlight, false)
+    dropArea.addEventListener(eventName, highlight, false)
 })
 
 ;['dragleave', 'drop'].forEach(eventName => {
-  dropArea.addEventListener(eventName, unhighlight, false)
+    dropArea.addEventListener(eventName, unhighlight, false)
 })
 
 function highlight(e) {
-  dropArea.classList.add('highlight')
+    dropArea.classList.add('highlight')
 }
 
 function unhighlight(e) {
-  dropArea.classList.remove('highlight')
+    dropArea.classList.remove('highlight')
 }
 
 dropArea.addEventListener('drop', handleDrop, false)
 
 function handleDrop(e) {
-  let dt = e.dataTransfer
-  let files = dt.files
-
-  handleFiles(files)
+    let dt = e.dataTransfer
+    let files = dt.files
+    
+    handleFiles(files)
 }
 
 function previewFile(file) {
-  let reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onloadend = function() {
-    let img = document.createElement('img');
-    img.src = reader.result;
-    document.getElementById('gallery').appendChild(img);
-  }
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = function() {
+        let img = document.createElement('img');
+        img.src = reader.result;
+        document.getElementById('gallery').appendChild(img);
+    }
 }
 
 function handleFiles(files) {
-  files = [...files];
-  files.forEach(uploadFile);
-  files.forEach(previewFile);
+    console.log(files);
+    files = [...files];
+    files.forEach(uploadFile);
+    files.forEach(previewFile);
 }
 
 function uploadFile(file) {
-  let url = 'ajax';
-  let formData = new FormData();
-
-  formData.append('--formGoal', 'Upload.ajax');
-  formData.append('uploadFile', file);
-
-  fetch(url, {
-    mode: 'same-origin',
-    credentials: 'same-origin',
-    method: 'POST',
-    body: formData
-  })
-  .then(response => { return response.text() })
-  .then(responseText => { 
-      let feedbackUpload = document.createElement('div');
-      feedbackUpload.innerHTML = responseText;
-      feedbackAjax.appendChild(feedbackUpload); 
-      
-  })
-  .catch(() => { feedbackAjax.innerHTML += '<div>UPLOAD ERROR</div>' })
+    let url = 'ajax';
+    let formData = new FormData();
+    
+    formData.append('--formGoal', 'Upload.ajax');
+    formData.append('uploadFile', file);
+    
+    fetch(url, {
+        mode: 'same-origin',
+        credentials: 'same-origin',
+        method: 'POST',
+        body: formData
+    })
+    .then(response => { return response.text() })
+    .then(responseText => {
+        let feedbackUpload = document.createElement('div');
+        feedbackUpload.innerHTML = responseText;
+        feedbackAjax.appendChild(feedbackUpload);
+    })
+    .catch(() => { feedbackAjax.innerHTML += '<div>UPLOAD ERROR</div>' })
 }
 
 
     </script>
+</section>
+
+<section class="crud-upload-read">
+    <div class="list-mini">
+<?php
+$idUser = lireSession("id");
+
+$tabResult = trouverLigne("Page", "dataType", "upload", "AND idUser = $idUser ORDER BY date DESC");
+foreach($tabResult as $tabLigne)
+{
+    extract($tabLigne);
+    
+    $extension = pathinfo($urlPage, PATHINFO_EXTENSION);
+    if (in_array($extension, [ "jpg", "jpeg", "gif", "png" ])) {
+    echo
+<<<CODEHTML
+    <a href="#"><img src="assets/upload/100x100-$urlPage"></a>
+CODEHTML;
+        
+    }
+
+}
+
+?>
+    </div>
+    
 </section>

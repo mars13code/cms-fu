@@ -7,7 +7,7 @@ $section  = filtrer("section", "create");
 
 <?php if ($section == "create"): ?>
 
-            <section>
+            <section class="crud-create">
                 <h2>CREATE</h2>
                 <form class="vertical">
                     <input type="text" name="titre" required placeholder="titre">
@@ -36,7 +36,7 @@ foreach ($tabResult as $tabLigne):
     extract($tabLigne);
 
     ?>
-	            <section>
+	            <section class="crud-update">
 	                <h2>UPDATE</h2>
     	                <form class="vertical">
                         <input type="text" name="titre" required placeholder="titre" value="<?php echo $titre ?>">
@@ -58,7 +58,7 @@ foreach ($tabResult as $tabLigne):
 
 
 
-            <section>
+            <section class="crud-read">
                 <h2>READ</h2>
                 <div class="feedback"><?php traiterForm("$nomTable.delete", "$nomTable.update"); ?></div>
 <?php

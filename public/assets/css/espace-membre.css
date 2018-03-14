@@ -1,0 +1,40 @@
+.espace-membre main {
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.espace-membre .crud-create {
+    width:50%;
+    order:1;
+}
+
+.espace-membre .crud-update {
+    width:50%;
+    order:1;
+}
+
+.espace-membre .crud-read {
+    width:100%;
+    order:4;
+}
+
+.espace-membre .crud-upload-create {
+    width:50%;
+    order:2;
+}
+
+.espace-membre .crud-upload-read {
+    width:100%;
+    order:3;
+}
+
+.list-mini {
+    display:flex;
+    flex-wrap:wrap;
+}
+
+.list-mini img {
+    width:100px;
+    height:100px;
+    object-fit: cover;
+}

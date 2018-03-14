@@ -8,11 +8,12 @@
         
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/site.css" type="text/css">
+        <link rel="stylesheet" href="assets/css/espace-membre.css" type="text/css">
         
         <?php afficherAction("theme.head") ?>
 
     </head>
-    <body>
+    <body class="espace-membre">
         <div class="page">
             
         <header>
