@@ -24,7 +24,7 @@ foreach ($tabResult as $tabLigne) {
 
     <article class="annonce-$id">
         <div>$categorie</div>
-        <h3><a href="annonce.php?idAnnonce=$id">$titre</a> (par $nom)</h3>
+        <h3><a href="annonce.php?idAnnonce=$idAnnonce">$titre</a> (par $nom)</h3>
         <strong>prix: $prix euros</strong>
         <div class="description">$description</div>
         <div>$htmlImage</div>

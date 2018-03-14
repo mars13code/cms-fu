@@ -174,10 +174,11 @@ function trouverLigneJointure($tabJointure, $nomColonne = "", $valeurColonne = "
             $tabWhere     = [$tokenColonne => $valeurColonne];
         }
 
+        // on ajoute les 2 alias pour ne pas se mélanger avec les 2 colonnes id
         $codeSQL =
             <<<CODESQL
 
-SELECT *
+SELECT *, $nomTable1.id as id$nomTable1, $nomTable2.id as id$nomTable2 
 FROM $nomTable1
 INNER JOIN $nomTable2
 ON $nomTable1.$joint1 = $nomTable2.$joint2
