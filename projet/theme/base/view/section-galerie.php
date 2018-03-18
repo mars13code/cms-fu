@@ -13,7 +13,7 @@ foreach($tabResult as $tabLigne)
     if (in_array($extension, [ "jpg", "jpeg", "gif", "png" ])) {
     echo
 <<<CODEHTML
-    <a href="assets/upload/800x800-$urlPage"><img src="assets/upload/320x320-$urlPage"></a>
+    <a href="assets/upload/0x800-$urlPage"><img src="assets/upload/320x320-$urlPage"></a>
 CODEHTML;
         
     }
