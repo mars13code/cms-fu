@@ -223,15 +223,18 @@ function creerImage($cheminCible=null)
     }
     if (0 == ($width + $height))
     {
+        // original size
         $width = $widthSrc;
         $height = $heightSrc;
     }
     elseif (0 == $width)
     {
+        // width auto
         $width = $widthSrc * $height / $heightSrc;
     }
     elseif (0 == $height)
     {
+        // height auto
         $height = $heightSrc * $width / $widthSrc;
     }
     
