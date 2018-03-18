@@ -1,5 +1,25 @@
 <?php
 
+/**
+ *  affiche les images liées à une Annonce
+ *  (les images sont dans la table Page avec le dataType=upload
+ */
+function afficherImages ($idAnnonce)
+{
+    $result = "";
+    $tabImage = trouverLigneJointure(["Jointure" => "idTable2", "Page" => "id"], "idTable1", "$idAnnonce", "" );
+    foreach($tabImage as $tabLigne)
+    {
+        extract($tabLigne);
+        $result .=
+<<<CODEHTML
+    <img src="assets/img/300x300-$urlPage">
+CODEHTML;
+
+    }
+    return $result;
+}
+
 function afficherTable($nomTable, $tabResult, $tabColShow=[])
 {
     $htmlHead = "";

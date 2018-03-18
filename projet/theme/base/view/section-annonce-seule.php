@@ -1,7 +1,7 @@
 
            <section>
                 <h2>ANNONCE SEULE</h2>
-                <div class="ligne col2">
+                <div class="ligne">
                     
 <?php
 
@@ -19,6 +19,9 @@ foreach ($tabResult as $tabLigne) {
     extract($tabLigne);
     $htmlImage = $urlImage ? '<img src="' . $urlImage . '">' : "";
 
+    $htmlAlbum = afficherImages($idAnnonce);
+    
+    // AJOUTER LES IMAGES
     echo
         <<<CODEHTML
 
@@ -28,6 +31,7 @@ foreach ($tabResult as $tabLigne) {
         <strong>prix: $prix euros</strong>
         <div>$description</div>
         <div>$htmlImage</div>
+        <div class="ligne col3">$htmlAlbum</div>
         <div>$date</div>
     </article>
 

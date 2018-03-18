@@ -64,6 +64,10 @@ table {
     width: 100%;
 }
 
+article {
+    width:100%;
+}
+
 td {
     border: 1px solid #123456;
     padding: 0.5rem;
@@ -124,6 +128,7 @@ form>* {
     height:calc(100%/3);
     object-fit: cover;
 }
+
 /* ADMIN */
 
 

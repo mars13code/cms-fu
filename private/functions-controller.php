@@ -11,6 +11,21 @@ function wd_remove_accents($str, $charset='utf-8')
     
     return $str;
 }
+function filtrerMultiId ($inputName)
+{
+    $result = [];
+    
+    $tabMulti = $_REQUEST["$inputName"] ?? [];
+    if (is_array($tabMulti))
+    {
+        foreach($tabMulti as $index => $valeur)
+        {
+            $result[] = intval($valeur);
+        }
+    }
+    return $result;
+}
+
 
 function filtrerUpload($inputName)
 {

@@ -43,6 +43,10 @@ function envoyerRequeteSQL($codeSQL, $tabInput = [])
         $objetPDOStatement->execute($tabInput);
 
         $objetPDOStatement->setFetchMode(PDO::FETCH_ASSOC);
+        // on ajoute cette info pour les requêtes insert
+        // cela permet de créer des relations Many to Many (NxN)
+        // http://php.net/manual/fr/pdo.lastinsertid.php
+        $objetPDOStatement->cmsLID = $objetPDO->lastInsertId();
 
     } catch (PDOException $exception) {
         ajouterErreurSQL($exception, $objetPDOStatement);
@@ -68,6 +72,7 @@ function insererLigneUnique($nomTable, $tabInput, $nomColonne = "", $valeurColon
 
     if (empty($tabLigne)) {
         $objetPDOStatement = insererLigne($nomTable, $tabInput);
+        
         return $objetPDOStatement;
     }
 

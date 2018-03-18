@@ -25,8 +25,20 @@ if ($formGoal == "Annonce.create") {
             "ip"          => $ip,
             "idUser"      => $idUser,
         ];
-        insererLigneUnique("Annonce", $tabInput, "titre", $titre);
+        $objetPDOStatement = insererLigneUnique("Annonce", $tabInput, "titre", $titre);
 
+        $tabChoixImage = filtrerMultiId("choixImage");
+        foreach($tabChoixImage as $choixImage)
+        {
+            $tabInputJointure = [
+                "nomTable1"    => "Annonce",
+                "nomTable2"    => "Page",
+                "idTable1"       => $objetPDOStatement->cmsLID,
+                "idTable2"       => $choixImage,
+                ];
+            
+            insererLigne("Jointure", $tabInputJointure);
+        }
     }
     afficherMessage("votre annonce est publiée ($titre)");
 }
