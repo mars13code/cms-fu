@@ -201,6 +201,9 @@ function creerImage($cheminCible=null)
     $dossierUpload = $GLOBALS["dossierCMS"] . "/projet/upload";
     $cheminFichier = "$dossierUpload/$name.$extension";
     $imgSrc = null;
+    $widthSrc = 0;
+    $heightSrc = 0;
+    
     if (file_exists($cheminFichier)) {
         if (in_array($extension, [ "jpg", "jpeg" ])) {
             // http://php.net/manual/fr/function.imagecreatefromjpeg.php
@@ -218,25 +221,30 @@ function creerImage($cheminCible=null)
             imagealphablending($im, false);
             imagesavealpha($im, true);        
         }
+        // http://php.net/manual/fr/function.imagesx.php
         $widthSrc= imagesx($imgSrc);
         $heightSrc= imagesy($imgSrc);
     }
+    
     if (0 == ($width + $height))
     {
         // original size
         $width = $widthSrc;
         $height = $heightSrc;
     }
-    elseif (0 == $width)
+    elseif ((0 == $width) && ($heightSrc > 0))
     {
         // width auto
         $width = $widthSrc * $height / $heightSrc;
     }
-    elseif (0 == $height)
+    elseif ((0 == $height) && ($widthSrc > 0))
     {
         // height auto
         $height = $heightSrc * $width / $widthSrc;
     }
+    // min 1 pixel
+    $width = max(1, $width);
+    $height = max(1, $height);
     
     if (0 < $width * $height)
     {
@@ -247,7 +255,6 @@ function creerImage($cheminCible=null)
         }
     }
     if ($imgSrc) {
-        // http://php.net/manual/fr/function.imagesx.php
         if ($widthSrc * $heightSrc > 0) {
             // http://php.net/manual/fr/function.imagecopyresampled.php
             $xSrc = 0;
