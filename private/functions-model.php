@@ -48,7 +48,8 @@ function envoyerRequeteSQL($codeSQL, $tabInput = [])
         // http://php.net/manual/fr/pdo.lastinsertid.php
         $objetPDOStatement->cmsLID = $objetPDO->lastInsertId();
 
-    } catch (PDOException $exception) {
+    } 
+    catch (PDOException $exception) {
         ajouterErreurSQL($exception, $objetPDOStatement);
         $errorCode = $exception->getCode();
         if ($errorCode == "42S02") {

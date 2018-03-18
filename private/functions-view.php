@@ -196,8 +196,6 @@ function creerImage($cheminCible=null)
     $width  = min($width, 2000);
     $height = min($height, 2000);
 
-    $im = @imagecreatetruecolor($width, $height);
-    
     // check if file exists in upload
     // todo: ameliorer le chemin du dossier... 
     $dossierUpload = $GLOBALS["dossierCMS"] . "/projet/upload";
@@ -220,11 +218,33 @@ function creerImage($cheminCible=null)
             imagealphablending($im, false);
             imagesavealpha($im, true);        
         }
+        $widthSrc= imagesx($imgSrc);
+        $heightSrc= imagesy($imgSrc);
+    }
+    if (0 == ($width + $height))
+    {
+        $width = $widthSrc;
+        $height = $heightSrc;
+    }
+    elseif (0 == $width)
+    {
+        $width = $widthSrc * $height / $heightSrc;
+    }
+    elseif (0 == $height)
+    {
+        $height = $heightSrc * $width / $widthSrc;
+    }
+    
+    if (0 < $width * $height)
+    {
+        $im = @imagecreatetruecolor($width, $height);
+        if (in_array($extension, [ "png", "gif" ])) {
+            imagealphablending($im, false);
+            imagesavealpha($im, true);        
+        }
     }
     if ($imgSrc) {
         // http://php.net/manual/fr/function.imagesx.php
-        $widthSrc= imagesx($imgSrc);
-        $heightSrc= imagesy($imgSrc);
         if ($widthSrc * $heightSrc > 0) {
             // http://php.net/manual/fr/function.imagecopyresampled.php
             $xSrc = 0;
