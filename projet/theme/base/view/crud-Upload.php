@@ -11,7 +11,7 @@
   border-radius: 20px;
   width: 480px;
   font-family: sans-serif;
-  margin: 100px auto;
+  margin: 1rem auto;
   padding: 20px;
 }
 #drop-area.highlight {
@@ -143,9 +143,7 @@ function uploadFile(file) {
 
 
     </script>
-</section>
 
-<section class="crud-upload-read">
     <div class="list-mini">
 <?php
 $idUser = lireSession("id");

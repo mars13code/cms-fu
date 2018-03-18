@@ -11,6 +11,7 @@ function wd_remove_accents($str, $charset='utf-8')
     
     return $str;
 }
+
 function filtrerMultiId ($inputName)
 {
     $result = [];

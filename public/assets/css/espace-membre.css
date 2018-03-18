@@ -28,6 +28,12 @@
     order:3;
 }
 
+.espace-membre .list-mini {
+    height:400px;
+    overflow-y:scroll;
+    justify-content:center;
+}
+
 .list-mini {
     display:flex;
     flex-wrap:wrap;
@@ -37,4 +43,8 @@
     width:100px;
     height:100px;
     object-fit: cover;
+}
+
+.list-mini img:hover {
+    border:2px solid #123456;
 }
