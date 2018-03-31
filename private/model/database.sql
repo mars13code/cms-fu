@@ -7,6 +7,7 @@ USE `cmsFun`;
 
 DROP TABLE `Framework`;
 DROP TABLE `Page`;
+DROP TABLE `Jointure`;
 
 
 CREATE TABLE IF NOT EXISTS `Framework` (
@@ -48,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `Page` (
   `template`    varchar(190)    NOT NULL,
   `level`       int(11)         NOT NULL,
   `date`        datetime        NOT NULL,
-  `priority`       int(11)         NOT NULL,
+  `priority`    int(11)         NOT NULL,
   `description` varchar(190)    NOT NULL,
   `idUser`      int(11)         NOT NULL,
   `ip`          varchar(190)    NOT NULL,
@@ -64,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `Jointure` (
   `idTable1`          int(11)         NOT NULL,
   `idTable2`          int(11)         NOT NULL,
   `level`             int(11)         NOT NULL,
+  `quantite`          decimal(10,2)   NOT NULL,
   `cle`               varchar(190)    NOT NULL,
   `valeur`            text            NOT NULL,
   PRIMARY KEY (`id`)
