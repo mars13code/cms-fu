@@ -1,4 +1,3 @@
-
 <?php bloc("bloc.section") ?>
 <section>
     <?php bloc("bloc.content") ?>
