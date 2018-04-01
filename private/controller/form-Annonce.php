@@ -27,6 +27,7 @@ if ($formGoal == "Annonce.create") {
         ];
         $objetPDOStatement = insererLigneUnique("Annonce", $tabInput, "titre", $titre);
 
+        // todo: vérifier que les id existent dans la table
         $tabChoixImage = filtrerMultiId("choixImage");
         foreach($tabChoixImage as $choixImage)
         {
