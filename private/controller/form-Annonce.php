@@ -32,10 +32,10 @@ if ($formGoal == "Annonce.create") {
         foreach($tabChoixImage as $choixImage)
         {
             $tabInputJointure = [
-                "nomTable1"    => "Annonce",
-                "nomTable2"    => "Page",
-                "idTable1"       => $objetPDOStatement->cmsLID,
-                "idTable2"       => $choixImage,
+                "nomTable1"     => "Annonce",
+                "nomTable2"     => "Page",
+                "idTable1"      => $objetPDOStatement->cmsLID,
+                "idTable2"      => $choixImage,
                 ];
             
             insererLigne("Jointure", $tabInputJointure);
