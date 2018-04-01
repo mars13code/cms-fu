@@ -12,15 +12,15 @@ function creerTable (...$tabParam)
         foreach($tabColonne as $tabInfo)
         {
             extract($tabInfo);
-            $listeColonne .= "`$nomColonne`     $typeColonne,\n";
+            $listeColonne .= "\t`$nomColonne`     $typeColonne,\n";
         }
         // SI TOUT EST OK, ALORS ON CREE LA TABLE
         $codeSQL =
 <<<CODESQL
 CREATE TABLE IF NOT EXISTS `$nomTable` (
-  `id`                int(11)         NOT NULL AUTO_INCREMENT,
-  $listeColonne
-  PRIMARY KEY (`id`)
+    `id`                int(11)         NOT NULL AUTO_INCREMENT,
+$listeColonne
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
 
 CODESQL;
@@ -35,7 +35,7 @@ CODESQL;
         $tabColonne[] = [
             "nomColonne"    => $tabParam[0],
             "typeColonne"   => $tabParam[1],
-            "unique"        => $tabParam[2],
+            "unique"        => $tabParam[2] ?? "",
             ];    
     }
 }
@@ -45,7 +45,7 @@ function supprimerTable ($nomTable)
     $codeSQL =
 <<<CODESQL
 
-DELETE `$nomTable` IF EXISTS
+DROP TABLE IF EXISTS `$nomTable` 
 
 CODESQL;
 

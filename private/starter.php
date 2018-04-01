@@ -35,4 +35,4 @@ require_once __DIR__ . "/functions-controller.php";
 // chemin par defaut du cms
 ajouterControllerDir(__DIR__ . "/controller");
 
-startCMS();
+$cmsCLI ?? startCMS();
