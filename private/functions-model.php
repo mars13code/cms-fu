@@ -53,6 +53,30 @@ CODESQL;
     return $objetPDOStatement;
 }
 
+// FIWME: il faut rafraichir adminer pour voir la nouvelle db...
+function creerDatabase ($nomDatabase)
+{
+    $codeSQL =
+<<<CODESQL
+
+CREATE DATABASE IF NOT EXISTS `$nomDatabase` 
+DEFAULT CHARACTER SET utf8mb4 
+COLLATE utf8mb4_general_ci;
+
+CODESQL;
+
+    global $dbSQL;
+    $dbSQL2 = $dbSQL;
+    if ($dbSQL2 == $nomDatabase) $dbSQL = "";
+    
+    //echo $codeSQL;
+    $objetPDOStatement = envoyerRequeteSQL($codeSQL);
+
+    if ($dbSQL2 == $nomDatabase) $dbSQL = $dbSQL2;
+    
+    return $objetPDOStatement;
+}
+
 function ajouterErreurSQL(...$tabParam)
 {
     static $tabErreur    = [];

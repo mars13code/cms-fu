@@ -17,6 +17,8 @@ $dbSQL   = "cmsFun";
 $cmsCLI = true;
 require_once __DIR__ . "/../starter.php";
 
+creerDatabase("cmsFun".date("His"));
+
 supprimerTable("Hello");
 
 creerTable("Hello");
