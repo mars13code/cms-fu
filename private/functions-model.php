@@ -1,5 +1,58 @@
 <?php
 
+function creerTable (...$tabParam)
+{
+    static $nomTable = "";
+    static $tabColonne = [];
+    
+    $nbParam = count($tabParam);
+    if(empty($tabParam))
+    {
+        $listeColonne = "";
+        foreach($tabColonne as $tabInfo)
+        {
+            extract($tabInfo);
+            $listeColonne .= "`$nomColonne`     $typeColonne,\n";
+        }
+        // SI TOUT EST OK, ALORS ON CREE LA TABLE
+        $codeSQL =
+<<<CODESQL
+CREATE TABLE IF NOT EXISTS `$nomTable` (
+  `id`                int(11)         NOT NULL AUTO_INCREMENT,
+  $listeColonne
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 ;
+
+CODESQL;
+        $objetPDOStatement = envoyerRequeteSQL($codeSQL);
+    }
+    elseif ($nbParam == 1)
+    {
+        $nomTable = trim($tabParam[0]);
+    }
+    else
+    {
+        $tabColonne[] = [
+            "nomColonne"    => $tabParam[0],
+            "typeColonne"   => $tabParam[1],
+            "unique"        => $tabParam[2],
+            ];    
+    }
+}
+
+function supprimerTable ($nomTable)
+{
+    $codeSQL =
+<<<CODESQL
+
+DELETE `$nomTable` IF EXISTS
+
+CODESQL;
+
+    $objetPDOStatement = envoyerRequeteSQL($codeSQL);
+    return $objetPDOStatement;
+}
+
 function ajouterErreurSQL(...$tabParam)
 {
     static $tabErreur    = [];
@@ -27,6 +80,7 @@ function ajouterErreurSQL(...$tabParam)
         }
     }
 }
+
 function envoyerRequeteSQL($codeSQL, $tabInput = [])
 {
     static $objetPDO   = null;
