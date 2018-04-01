@@ -28,6 +28,7 @@ if ($formGoal == "Annonce.create") {
         $objetPDOStatement = insererLigneUnique("Annonce", $tabInput, "titre", $titre);
 
         // todo: vérifier que les id existent dans la table
+        // et vérifier que les id des images appartiennent à l'auteur...
         $tabChoixImage = filtrerMultiId("choixImage");
         foreach($tabChoixImage as $choixImage)
         {
